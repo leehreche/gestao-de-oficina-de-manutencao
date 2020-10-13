@@ -1,2 +1,4 @@
 # gestao-de-oficina-de-manutencao
 Sistema para Gestão de Oficinas de Manutenção
+
+O produto deve dar apoio à gestão de uma oficina de manutenção de eletrodomésticos. Os clientes trazem os aparelhos para orçamento, que tem prazo para ser fornecido, dependente do tipo de aparelho. Se o conserto for autorizado, o cliente recebe uma previsão de prazo de entrega, podendo depois consultar o andamento do serviço por telefone. O produto deve controlar o estoque de peças e a distribuição de serviço entre os técnicos de manutenção, permitindo calcular os custos de material e mão de obra, e dando apoio à emissão de pedidos de peças aos fornecedores destas.
