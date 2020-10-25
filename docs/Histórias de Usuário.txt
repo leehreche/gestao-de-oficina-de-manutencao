@@ -1,11 +1,12 @@
 Histórias do Usuário
 
-Como cliente, eu gostaria de consultar o andamento do serviço por telefone, para que eu possa acompanhar o status do meu pedido. 
-****(Saber se é telefone mesmo, ou se o cliente vai acessar a aplicação para poder ver)
+Como cliente, eu gostaria de consultar o andamento do serviço por telefone, para que eu possa acompanhar o status do meu pedido.
 
 Como funcionário, eu gostaria de cadastrar um tipo de aparelho e seu prazo de manutenção, para que possa ser fornecido um prazo automaticamente.
 
 Como funcionário, eu gostaria de consultar os tipos de aparelho, para que eu possa fornecer um orçamento dentro de um prazo específico para cada tipo de aparelho.
+
+Como funcionário, eu gostaria de consultar o status do pedido de um cliente, para que possa ajudá-lo sempre que o mesmo solicitar.
 
 Como cliente, eu gostaria de receber uma previsão de prazo de entrega, para que eu possa saber o tempo de manutenção e conserto.
 
@@ -17,11 +18,9 @@ Como funcionário, eu gostaria de cadastrar as entradas e saídas de materiais (co
 
 (CRÍTICA)
 Como funcionário, eu gostaria de assumir um serviço de manutenção, para que se possa controlar quem está fazendo cada manutenção cadastrada.
-****(Saber se o funcionário pode assumir tarefas ou se vamos precisar de um gerente para isso)
 
 (CRÍTICA)
 Como funcionário, eu gostaria de adicionar materiais e mão de obra ao pedido de manutenção de um cliente, para que se possa calcular o valor do pedido e do orçamento.
-****(Saber se o valor da mão de obra é automático com base no tipo de aparelho ou se o funcionário escreve o valor)
 
 Como funcionário, eu gostaria de cadastrar fornecedores e suas peças, para que se possa ter uma agenda de contatos dos fornecedores de peças para a loja.
 
@@ -29,17 +28,3 @@ Como funcionário, eu gostaria de cadastrar um cliente, para que fique mais fácil
 
 (CRÍTICA)
 Como funcionário, eu gostaria de emitir um pedido de peça ao fornecedor, para que se possa comprar mais peças, controlando o estoque automaticamente.
-
-FUNCIONÁRIOS
-CLIENTES
-FORNECEDORES
-PEDIDO EXTENDS ORÇAMENTO/FORNECEDOR
-ITENS PEDIDO
-PRODUTOS
-TIPO DE APARELHOS
-
-
-
-
-
-
