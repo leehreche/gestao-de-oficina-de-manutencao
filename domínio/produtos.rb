@@ -1,24 +1,65 @@
 class Produtos
 
-  def initialize(id, descricao, quantidade, preco)
-    @id = id
+  @@idGlobalControle = 0
+  @@array_produtos = []
+
+  def initialize(descricao, quantidade, preco)
+    @id = @@idGlobalControle
     @descricao = descricao
     @quantidade = quantidade
     @preco = preco
+
+    @@idGlobalControle += 1
+
+    novoProduto = {"id" => @id, "descricao" => descricao, "quantidade" => quantidade, "preco" => preco}
+  
+    @@array_produtos << novoProduto
   end
 
-  def cadastrarEntradaProduto()
-
+  def cadastrarEntradaProduto(quantidade)
+    if quantidade.kind_of?Integer
+      @quantidade += quantidade
+      
+      @@array_produtos.map do |produto|
+        if @id.eql?(produto["id"])
+          produto["quantidade"] = @quantidade
+          return true      
+        end
+      end
+    end
+    return false
   end
 
-  def cadastrarSaidaProduto()
-
+  def cadastrarSaidaProduto(quantidade)
+    if quantidade.kind_of?Integer
+      if @quantidade >= quantidade
+        @quantidade -= quantidade
+      
+        @@array_produtos.map do |produto|
+          if @id.eql?(produto["id"])
+            produto["quantidade"] = @quantidade
+            return true      
+          end
+        end
+      else
+        puts "Quantidade que deseja tirar é menor que a quantidade cadastrada no estoque"
+        return false
+      end
+    end
+    puts "Produto não encontrado"
+    return false
   end
 
   def editarDescricaoProduto(descricaoProdutoNovo)
     if descricaoProdutoNovo.kind_of?String
       @descricao = descricaoProdutoNovo
-      return true
+      
+      @@array_produtos.map do |produto|
+        if @id.eql?(produto["id"])
+          produto["descricao"] = @descricao
+          return true      
+        end
+      end
     end
     return false
   end
@@ -26,12 +67,23 @@ class Produtos
   def editarPrecoProduto(precoNovo)
     if precoNovo.kind_of?Float
       @preco = precoNovo
-      return true
+      
+      @@array_produtos.map do |produto|
+        if @id.eql?(produto["id"])
+          produto["preco"] = @preco
+          return true      
+        end
+      end
     end
     return false
   end
 
   def consultarProduto()
-    
+    @@array_produtos.map do |produto|
+      if @id.eql?(produto["id"])
+        return produto   
+      end
+    end
+    return false
   end 
 end

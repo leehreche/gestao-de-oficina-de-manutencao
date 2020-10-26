@@ -1,5 +1,7 @@
 class Clientes
 
+  @@array_clientes = []
+
   def initialize(cpf, nome, endereco, cidade, estado, telefone)
     @cpf = cpf
     @nome = nome
@@ -7,20 +9,36 @@ class Clientes
     @cidade = cidade
     @estado = estado
     @telefone = telefone
+
+    novoCliente = {"cpf" => cpf, "nome" => nome, "endereco" => endereco, "cidade" => cidade, "estado" => estado, "telefone" => telefone}
+  
+    @@array_clientes << novoCliente
   end
 
   def editarEndereco(enderecoNovo)
     if enderecoNovo.kind_of?String
       @endereco = enderecoNovo
-      return true
+
+      @@array_clientes.map do |cliente|
+        if @cpf.eql?(cliente["cpf"])
+          cliente["endereco"] = @endereco
+          return true      
+        end
+      end
     end
-    return false 
+    return false
   end
 
   def editarCidade(cidadeNova)
     if cidadeNova.kind_of?String
       @cidade = cidadeNova
-      return true
+
+      @@array_clientes.map do |cliente|
+        if @cpf.eql?(cliente["cpf"])
+          cliente["cidade"] = @cidade
+          return true      
+        end
+      end
     end
     return false
   end
@@ -28,7 +46,13 @@ class Clientes
   def editarEstado(estadoNovo)
     if estadoNovo.kind_of?String
       @estado = estadoNovo
-      return true
+
+      @@array_clientes.map do |cliente|
+        if @cpf.eql?(cliente["cpf"])
+          cliente["estado"] = @estado
+          return true      
+        end
+      end
     end
     return false
   end
@@ -36,7 +60,13 @@ class Clientes
   def editarTelefone(telefoneNovo)
     if telefoneNovo.kind_of?String
       @telefone = telefoneNovo
-      return true
+      
+      @@array_clientes.map do |cliente|
+        if @cpf.eql?(cliente["cpf"])
+          cliente["telefone"] = @telefone
+          return true      
+        end
+      end
     end
     return false
   end
