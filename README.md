@@ -1,4 +1,30 @@
-# gestao-de-oficina-de-manutencao
+﻿# gestao-de-oficina-de-manutencao
+
+
 Sistema para Gestão de Oficinas de Manutenção
 
-O produto deve dar apoio à gestão de uma oficina de manutenção de eletrodomésticos. Os clientes trazem os aparelhos para orçamento, que tem prazo para ser fornecido, dependente do tipo de aparelho. Se o conserto for autorizado, o cliente recebe uma previsão de prazo de entrega, podendo depois consultar o andamento do serviço por telefone. O produto deve controlar o estoque de peças e a distribuição de serviço entre os técnicos de manutenção, permitindo calcular os custos de material e mão de obra, e dando apoio à emissão de pedidos de peças aos fornecedores destas.
+
+
+O projeto se baseia na gestão de uma oficina de manutenção de eletrodomésticos. Através das classes definidas o sistema representa cada elemento que pertence ao contexto, deixando definido quais as funções dos funcionários e clientes, como são solicitados os pedidos de serviços e fornecedores e por fim como um serviço é devidamente autorizado e registrado dentro do sistema. 
+
+Com isso, o funcionamento do sistema ocorre da seguinte maneira: primeiramente o cliente que tem uma demanda e solicitou um pedido de orçamento receberá as informações referentes ao serviço que ele procura, logo após, caso o cliente autorize o serviço, isso será registrado pelo sistema como um serviço pendente, que posteriormente poderá ser assumido por um dos funcionários identificados no sistema. Todas as funcionalidades relacionadas com cadastros de produtos, clientes e fornecedores assim como consulta aos pedidos e serviços que estão sendo realizados serão geridos pelos próprios funcionários da oficina de manutenção. Há também a possibilidade de gerir o estoque de peças através do software, podendo ser feitos pedidos de fornecedores e o registro da entrada e saída de produtos. 
+
+Resumidamente, o foco do sistema é oferecer um apoio no gerenciamento dos principais pontos de uma oficina de manutenção de eletrodomésticos, indo desde a relação entre funcionário-cliente até a relação funcionário-fornecedor, registrando pedidos e serviços, emitindo rebidos e oferecendo uma maneira eficaz de gerir o estoque de produtos e os usuários do sistema.
+
+
+
+
+Links de acessso aos artefatos do projeto:
+
+
++ Raiz do Projeto
+|
+---+ docs
+| |
+| -----+ Diagrama de Classes: https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Diagrama%20de%20Classes%20-%20Gest%C3%A3o%20de%20Oficina%20de%20Manuten%C3%A7%C3%A3o.pdf
+| |
+| -----+ Histórias de Usuário: https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Hist%C3%B3rias%20de%20Usu%C3%A1rio.txt
+|
+---+ domínio (Classes): https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/dom%C3%ADnio
+|
+---+ testes (Testes de Unidade): https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/testes
