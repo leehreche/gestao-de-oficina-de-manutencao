@@ -2,7 +2,7 @@ require_relative 'pedido_de_fornecedor'
 require_relative 'pedido_de_orcamento'
 require_relative 'produtos'
 require_relative 'clientes'
-require_relative 'fornecedor'
+require_relative 'fornecedores'
 require_relative 'tipo_de_aparelhos'
 require_relative 'servicos'
 
@@ -59,7 +59,7 @@ class Funcionarios
 
   def realizarPedidoFornecedor(fornecedor)
 
-    if !fornecedor.kind_of?Integer
+    if !fornecedor.kind_of?String
       puts "Dados do Fornecedor não é compatível"
       return false 
     end
@@ -72,7 +72,7 @@ class Funcionarios
 
   def realizarCadastroFornecedor(cnpj, razao_social, nome_fantasia, endereco, cidade, estado, telefone)
 
-    if !cnpj.kind_of?Integer
+    if !cnpj.kind_of?String
       puts "CNPJ não é compatível"
       return false 
     end
@@ -181,15 +181,20 @@ class Funcionarios
       return false 
     end
 
-    if !quantidade.kind_of?Float
+    if !quantidade.kind_of?Integer
       puts "Valor da quantidade não é válido"
       return false 
     end
 
-    Produtos.@@array_produtos.map do |produto|
+    Produtos.class_variable_get(:@@array_produtos).map do |produto|
       if id_produto.eql?(produto["id"])
-        retorno = produto.cadastrarSaidaProduto(quantidade) 
-        return retorno
+        if produto["quantidade"] >= quantidade
+          produto["quantidade"] -= quantidade
+          return true  
+        else
+          puts "Quantidade que deseja tirar é menor que a quantidade cadastrada no estoque"
+          return false
+        end
       end
     end
     puts "Produto não encontrado"
@@ -226,7 +231,7 @@ class Funcionarios
       return false 
     end
 
-    if !descricaoServico.kind_of?Integer
+    if !descricaoServico.kind_of?String
       puts "Dados da  Descrição não é válido"
       return false 
     end
@@ -237,119 +242,69 @@ class Funcionarios
 
   end
 
-  def realizarEmissaoRecibo(id, tipo)
+  def realizarEmissaoRecibo(destinatario)
 
-    if !id.kind_of?Integer
-      puts "Dados da identificação não é válido"
-      return false 
+    if !destinatario.kind_of?PedidoDeOrcamento
+      if !destinatario.kind_of?PedidoDeFornecedor
+        puts "Dados do Tipo de Emissão de Recibo não é válido"
+        return false
+      end 
     end
 
-    if !tipo.kind_of?String
-      puts "Dados do Tipo de Emissão de Recibo não é válido"
-      return false 
-    end
-
-    if tipo.upcase.eql?("CLIENTE")
-      PedidoDeOrcamento.@@array_pedido_orcamento.map do |pedido|
-        if id.eql?(pedido["id"])
-          retorno = pedido.emitirRecibo()
-          return retorno      
-        end
-      end
-
-      puts "Pedido não encontrado para esse tipo"
-      return retorno
-    end
-
-    if tipo.upcase.eql?("FORNECEDOR")
-      PedidoDeFornecedor.@@array_pedido_fornecedor.map do |pedido|
-        if id.eql?(pedido["id"])
-          retorno = pedido.emitirRecibo()
-          return retorno      
-        end
-      end
-
-      puts "Pedido não encontrado para esse tipo"
-      return retorno
-    end
+    retorno = destinatario.emitirRecibo()
+    return retorno
 
   end
 
-  def assumirServico(id_servico)
+  def assumirServico(servico)
 
-    if !id_servico.kind_of?Integer
+    if !servico.kind_of?Servicos
       puts "Dados da identificação não é válido"
       return false 
     end
+    
+    retorno = servico.adicionarFuncionario(@cpf) if servico.instance_variable_get(:@id_funcionario) == nil  
+    retorno = servico.editarFuncionario(@cpf) if servico.instance_variable_get(:@id_funcionario) != nil
+    return retorno
 
-    Servicos.@@array_servicos.map do |servico|
-      if id_servico.eql?(servico["id"])
-        retorno = servico.adicionarFuncionario(@cpf) if servico["id_funcionario"] == nil  
-        retorno = servico.editarFuncionario(@cpf) if servico["id_funcionario"] != nil
-        return retorno  
-      end
-    end
-    puts "Serviço não encontrado"
-    return false
   end
 
-  def consultarPedidoOrcamento(id_pedido_orcamento)
+  def consultarPedidoOrcamento(pedido_orcamento)
 
-    if !id_pedido_orcamento.kind_of?Integer
+    if !pedido_orcamento.kind_of?PedidoDeOrcamento
       puts "Dados da identificação não é válido"
       return false 
     end
 
-    PedidoDeOrcamento.@@array_pedido_orcamento.map do |pedido|
-      if id_pedido_orcamento.eql?(pedido["id"])
-        return pedido      
-      end
-    end
-
-    puts "Pedido não encontrado"
-    return false
+    return pedido_orcamento
   end
 
-  def consultarPedidoFornecedor(id_pedido_fornecedor)
+  def consultarPedidoFornecedor(pedido_fornecedor)
 
-    if !id_pedido_fornecedor.kind_of?Integer
+    if !pedido_fornecedor.kind_of?PedidoDeFornecedor
       puts "Dados da identificação não é válido"
       return false 
     end
 
-    PedidoDeFornecedor.@@array_pedido_fornecedor.map do |pedido|
-      if id_pedido_fornecedor.eql?(pedido["id"])
-        return pedido      
-      end
-    end
-
-    puts "Pedido não encontrado"
-    return false
+    return pedido_fornecedor
   end
 
-  def consultarServico(id_servico)
+  def consultarServico(servico)
 
-    if !id_servico.kind_of?Integer
+    if !servico.kind_of?Servicos
       puts "Dados da identificação não é válido"
       return false 
     end
 
-    Servicos.@@array_servicos.map do |servico|
-      if id_servico.eql?(servico["id"])
-        return servico.consultarServico()  
-      end
-    end
-    puts "Serviço não encontrado"
-    return false
-
+    return servico.consultarServico()
   end
 
   def consultarEstoque()
-    Produtos.@@array_produtos.map do |produto|
+    Produtos.class_variable_get(:@@array_produtos).map do |produto|
       puts "\n\nProduto: #{produto["descricao"]}"
-      puts "\nQuantidade: #{item["quantidade"]}"
+      puts "\nQuantidade: #{produto["quantidade"]}"
       puts "\nPreço: #{produto["preco"]}"
     end 
-    return Produtos.@@array_produtos
+    return Produtos.class_variable_get(:@@array_produtos)
   end  
 end

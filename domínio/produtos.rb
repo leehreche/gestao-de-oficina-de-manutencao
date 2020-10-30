@@ -1,6 +1,6 @@
 class Produtos
 
-  @@idGlobalControle = 0
+  @@idGlobalControle = 1
   @@array_produtos = []
 
   def initialize(descricao, quantidade, preco)

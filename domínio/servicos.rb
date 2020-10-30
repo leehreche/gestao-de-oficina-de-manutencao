@@ -2,7 +2,7 @@ require_relative 'status'
 
 class Servicos
 
-  @@idGlobalControle = 0
+  @@idGlobalControle = 1
   @@array_servicos = []
 
   def initialize(id_pedido, id_aparelho, descricaoServico)
