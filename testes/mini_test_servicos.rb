@@ -3,6 +3,8 @@ require_relative '../servicos'
 
 class MiniTestServicos < Minitest::Test
 
+  i_suck_and_my_tests_are_order_dependent!
+
   status = Status.new(1,"Pendente")
   status = Status.new(2,"Em execução")
 

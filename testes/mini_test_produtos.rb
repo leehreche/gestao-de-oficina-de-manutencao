@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require_relative '../produtos'
 
 class MiniTestProdutos < Minitest::Test
+
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_editarDescricaoProduto_false_para_inteiros
     assert_equal false, Produtos.new("Fusível", 20, 0.50).editarDescricaoProduto(123)
   end

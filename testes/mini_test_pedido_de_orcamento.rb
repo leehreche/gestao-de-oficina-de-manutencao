@@ -3,6 +3,8 @@ require_relative '../pedido_de_orcamento'
 
 class MiniTestPedidoDeOrcamento < Minitest::Test
 
+  i_suck_and_my_tests_are_order_dependent!
+
   status = Status.new(1,"Aguardando aprovação cliente")
   status = Status.new(2,"Aguardando aprovação cliente")
 

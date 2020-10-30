@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require_relative '../pedido_de_fornecedor'
 
 class MiniTestPedidoDeFornecedor < Minitest::Test
+
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_editarFornecedor_false_para_float
     assert_equal false, PedidoDeFornecedor.new("08356962000190").editarFornecedor(1.2)
   end

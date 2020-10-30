@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require_relative '../tipo_de_aparelhos'
 
 class MiniTestTipoDeAparelho < Minitest::Test
+
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_editarPrazoManutencao_false_para_floats
     assert_equal false, TipoDeAparelhos.new("Microondas", 20).editarPrazoManutencao(10.0)
   end

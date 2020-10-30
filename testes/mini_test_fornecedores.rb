@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require_relative '../fornecedores'
 
 class MiniTestFornecedores < Minitest::Test
+
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_editarEndereco_false_para_inteiros
     assert_equal false, Fornecedores.new("08356962000190", "Eco GA Ambiental LTDA", "Eco GA", "R. Antônio Togni, 3437 - Vila Cruz", "Poços de Caldas", "MG", "(35)3714-3069").editarEndereco(123)
   end

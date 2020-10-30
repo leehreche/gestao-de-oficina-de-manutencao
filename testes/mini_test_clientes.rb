@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require_relative '../clientes'
 
 class MiniTestClientes < Minitest::Test
+
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_editarEndereco_false_para_inteiros
     assert_equal false, Clientes.new(11111111111, "Letícia", "Rua Machado, 24, Centro", "Poços de Caldas", "MG", "(35)99999-9999").editarEndereco(123)
   end

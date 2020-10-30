@@ -3,6 +3,8 @@ require_relative '../pedidos'
 
 class MiniTestPedidos < Minitest::Test
 
+  i_suck_and_my_tests_are_order_dependent!
+
   def test_adicionarProduto_false_para_strings
     assert_equal false, Pedidos.new(1).adicionarProduto("1",30)
     assert_equal false, Pedidos.new(1).adicionarProduto(1,"30")
