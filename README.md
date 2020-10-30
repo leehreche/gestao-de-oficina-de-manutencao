@@ -17,14 +17,11 @@ Resumidamente, o foco do sistema é oferecer um apoio no gerenciamento dos princ
 Links de acessso aos artefatos do projeto:
 
 
-+ Raiz do Projeto
-|
----+ docs
-| |
-| -----+ Diagrama de Classes: https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Diagrama%20de%20Classes%20-%20Gest%C3%A3o%20de%20Oficina%20de%20Manuten%C3%A7%C3%A3o.pdf
-| |
-| -----+ Histórias de Usuário: https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Hist%C3%B3rias%20de%20Usu%C3%A1rio.txt
-|
----+ domínio (Classes): https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/dom%C3%ADnio
-|
----+ testes (Testes de Unidade): https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/testes
+*[Raiz do Projeto](https://github.com/leehreche/gestao-de-oficina-de-manutencao/)
+	* [docs]
+		* [Diagrama de Classes:](https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Diagrama%20de%20Classes%20-%20Gest%C3%A3o%20de%20Oficina%20de%20Manuten%C3%A7%C3%A3o.pdf)
+		* [Histórias de Usuário:](https://github.com/leehreche/gestao-de-oficina-de-manutencao/issues)
+	* [domínio]
+		* [Classes:](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/dom%C3%ADnio)
+	* [testes]
+		* [Testes de Unidade:](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/testes)
