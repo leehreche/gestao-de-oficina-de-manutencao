@@ -12,17 +12,15 @@ Com isso, o funcionamento do sistema ocorre da seguinte maneira: primeiramente o
 Resumidamente, o foco do sistema é oferecer um apoio no gerenciamento dos principais pontos de uma oficina de manutenção de eletrodomésticos, indo desde a relação entre funcionário-cliente até a relação funcionário-fornecedor, registrando pedidos e serviços, emitindo rebidos e oferecendo uma maneira eficaz de gerir o estoque de produtos e os usuários do sistema.
 
 
-
+## 
 
 Links de acessso aos artefatos do projeto:
 
-
-[Raiz do Projeto](https://github.com/leehreche/gestao-de-oficina-de-manutencao/)
 
 [Diagrama de Classes](https://github.com/leehreche/gestao-de-oficina-de-manutencao/blob/main/docs/Diagrama%20de%20Classes%20-%20Gest%C3%A3o%20de%20Oficina%20de%20Manuten%C3%A7%C3%A3o.pdf)
 
 [Histórias de Usuário](https://github.com/leehreche/gestao-de-oficina-de-manutencao/issues)
 
-[Classes](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/dom%C3%ADnio)
+[Classes de Domínio](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/dom%C3%ADnio)
 
-[Testes de Unidade](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/testes);
+[Testes de Unidade](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/main/testes)
