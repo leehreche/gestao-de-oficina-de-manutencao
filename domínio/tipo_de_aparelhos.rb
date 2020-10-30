@@ -1,6 +1,6 @@
 class TipoDeAparelhos
 
-  @@idGlobalControle = 0
+  @@idGlobalControle = 1
   @@array_tipo_aparelhos = []
 
   def initialize(nome, prazo_manutencao)
@@ -30,11 +30,6 @@ class TipoDeAparelhos
   end
 
   def consultarTipoAparelho()
-    @@array_tipo_aparelhos.map do |tipo_aparelho|
-      if @id.eql?(tipo_aparelho["id"])
-        return tipo_aparelho      
-      end
-    end
-    return false
+    return self
   end  
 end

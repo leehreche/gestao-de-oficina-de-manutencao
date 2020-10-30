@@ -11,17 +11,17 @@ class Pedidos
   def adicionarProduto(id_produto, quantidade)
 
     if !id_produto.kind_of?Integer
-      puts "Dados do Produto não é compatível"
+      puts "\nDados do Produto não é compatível"
       return false 
     end
     
     if !quantidade.kind_of?Integer
-      puts "Valor da quantidade não é compatível"
+      puts "\nValor da quantidade não é compatível"
       return false 
     end
 
     item = ItensDoPedido.new(id_produto, @id, quantidade)
-    puts "Itens do Pedido criado com sucesso"
+    puts "\nItens do Pedido criado com sucesso"
     return true    
 
   end
@@ -29,16 +29,16 @@ class Pedidos
   def editarProduto(id_produto, quantidade)
 
     if !id_produto.kind_of?Integer
-      puts "Dados do Produto não é compatível"
+      puts "\nDados do Produto não é compatível"
       return false 
     end
     
     if !quantidade.kind_of?Integer
-      puts "Valor da quantidade não é compatível"
+      puts "\nValor da quantidade não é compatível"
       return false 
     end
 
-    ItensDoPedido.@@array_itens_do_pedido.map do |item|
+    ItensDoPedido.class_variable_get(:@@array_itens_do_pedido).map do |item|
       if @id.eql?(item["id_pedido"]) && id_produto.eql?(item["id_produto"])
         item["quantidade"] = quantidade
         return true      
@@ -53,18 +53,15 @@ class Pedidos
       puts "Dados do Produto não é compatível"
       return false 
     end
-    
-    if !quantidade.kind_of?Integer
-      puts "Valor da quantidade não é compatível"
-      return false 
-    end
 
     indice = 0
 
-    ItensDoPedido.@@array_itens_do_pedido.map do |item|
-      if @id.eql?(item["id_pedido"]) && id_produto.eql?(item["id_produto"])
-        ItensDoPedido.@@array_itens_do_pedido.slice!(indice)
-        return true      
+    ItensDoPedido.class_variable_get(:@@array_itens_do_pedido).map do |item|
+      if @id.eql?(item["id_pedido"])
+        if id_produto.eql?(item["id_produto"])
+          ItensDoPedido.class_variable_get(:@@array_itens_do_pedido).slice!(indice)
+          return true   
+        end   
       end
       indice += 1 
     end
@@ -72,12 +69,19 @@ class Pedidos
 
   end
 
-  def emitirRecibo()
+  def emitirRecibo(id = nil)
+
+    if id == nil
+      id_pedido = @id
+    elsif
+      id_pedido = id
+    end
+
     accept = 0
 
-    ItensDoPedido.@@array_itens_do_pedido.map do |item|
-      if @id.eql?(item["id_pedido"])
-        Produtos.@@array_produtos.map do |produto|
+    ItensDoPedido.class_variable_get(:@@array_itens_do_pedido).map do |item|
+      if id_pedido.eql?(item["id_pedido"])
+        Produtos.class_variable_get(:@@array_produtos).map do |produto|
           if item["id_produto"].eql?(produto["id"])
             puts "\n\nProduto: #{produto["descricao"]}"
             puts "\nQuantidade: #{item["quantidade"]}"
@@ -98,9 +102,9 @@ class Pedidos
   def consultarValorTotal()
     valorTotal = 0
 
-    ItensDoPedido.@@array_itens_do_pedido.map do |item|
+    ItensDoPedido.class_variable_get(:@@array_itens_do_pedido).map do |item|
       if @id.eql?(item["id_pedido"])
-        Produtos.@@array_produtos.map do |produto|
+        Produtos.class_variable_get(:@@array_produtos).map do |produto|
           if item["id_produto"].eql?(produto["id"])
             valorTotal += item["quantidade"] * produto["preco"]      
           end

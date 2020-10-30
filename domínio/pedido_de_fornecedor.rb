@@ -1,4 +1,5 @@
 require_relative 'fornecedores'
+require_relative 'pedidos'
 
 class PedidoDeFornecedor < Pedidos
 
@@ -17,7 +18,7 @@ class PedidoDeFornecedor < Pedidos
   end
 
   def editarFornecedor(fornecedorNovo)
-    if fornecedorNovo.kind_of?Integer
+    if fornecedorNovo.kind_of?String
       @id_fornecedor = fornecedorNovo
       
       @@array_pedido_fornecedor.map do |pedido|
@@ -30,18 +31,26 @@ class PedidoDeFornecedor < Pedidos
     return false
   end
 
-  def consultarValorTotal()
-    puts "Imprimindo Recibo de Pedido de Orçamento"
+  def emitirRecibo()    
+    puts "Imprimindo Recibo de Pedido de Fornecedor"
     
-    Fornecedores.@@array_fornecedores.map do |fornecedor|
+    Fornecedores.class_variable_get(:@@array_fornecedores).map do |fornecedor|
       if @id_fornecedor.eql?(fornecedor["cnpj"])
         puts "\n\nFornecedor: #{fornecedor["razao_social"]}"      
       end
     end
 
     puts "\n\n Listagem de Produtos:"
-    
-    super
+    super(@id)
+  end
+
+  def consultarPedido()
+    pedido = super
+    return self
+  end 
+  
+  def consultarValorTotal()
+    return super    
   end
   
 end

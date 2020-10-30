@@ -1,9 +1,9 @@
 class Status
 
-  @@idGlobalControle = 0
+  @@idGlobalControle = 1
   @@array_status = []
 
-  def initialize(descricao, quantidade, preco)
+  def initialize(tipoStatus, descricaoStatus)
     @id = @@idGlobalControle
     @tipoStatus = tipoStatus
     @descricaoStatus = descricaoStatus
@@ -16,12 +16,7 @@ class Status
   end
 
   def consultarStatus()
-    @@array_status.map do |status|
-      if @id.eql?(tipo_aparelho["id"])
-        return status   
-      end
-    end
-    return false
+    return self
   end
 
 end

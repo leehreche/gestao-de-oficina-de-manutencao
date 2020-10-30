@@ -1,4 +1,5 @@
 require_relative 'clientes'
+require_relative 'pedidos'
 require_relative 'tipo_de_aparelhos'
 require_relative 'status'
 
@@ -16,7 +17,7 @@ class PedidoDeOrcamento < Pedidos
 
     @@idGlobalControle += 1
 
-    novoPedidoOrcamento = {"id" => @id, "data" => @data, "id_cliente" => id_cliente, "id_aparelho" => id_aparelho, "statusAutorizacao" => statusAutorizacao, "valorMaoDeObra" => valorMaoDeObra}
+    novoPedidoOrcamento = {"id" => @id, "data" => @data, "id_cliente" => id_cliente, "id_aparelho" => id_aparelho, "statusAutorizacao" => @statusAutorizacao, "valorMaoDeObra" => valorMaoDeObra}
   
     @@array_pedido_orcamento << novoPedidoOrcamento
   end
@@ -80,9 +81,9 @@ class PedidoDeOrcamento < Pedidos
   def consultarStatusAutorizacao()
     @@array_pedido_orcamento.map do |pedido|
       if @id.eql?(pedido["id"])
-        Status.@@array_status.map do |status|
-          if pedido["statusAutorizacao"].eql?(status["id"])
-            return pedido["descricaoStatus"]
+        Status.class_variable_get(:@@array_status).map do |status|
+          if status["id"].eql?(pedido["statusAutorizacao"])
+            return status["descricaoStatus"]   
           end
         end    
       end
@@ -93,7 +94,7 @@ class PedidoDeOrcamento < Pedidos
   def emitirRecibo()
     puts "Imprimindo Recibo de Pedido de Orçamento"
     
-    Clientes.@@array_clientes.map do |cliente|
+    Clientes.class_variable_get(:@@array_clientes).map do |cliente|
       if @id_cliente.eql?(cliente["cpf"])
         puts "\n\nCliente: #{cliente["nome"]}"      
       end
@@ -101,16 +102,17 @@ class PedidoDeOrcamento < Pedidos
 
     puts "\n\n Listagem de Produtos:"
     
-    super
+    retorno = super(@id)
 
-    puts "Valor da Mão de Obra: #{@valorMaoDeObra}"
+    puts "\n\nValor da Mão de Obra: #{@valorMaoDeObra}"
 
-    TipoDeAparelhos.@@array_tipo_aparelhos.map do |tipo_aparelho|
+    TipoDeAparelhos.class_variable_get(:@@array_tipo_aparelhos).map do |tipo_aparelho|
       if @id_aparelho.eql?(tipo_aparelho["id"])
-        puts "Tipo do Aparelho: #{tipo_aparelho["nome"]}"
+        puts "\n\nTipo do Aparelho: #{tipo_aparelho["nome"]}"
       end
     end
 
+    retorno
   end
 
   def consultarPedido()

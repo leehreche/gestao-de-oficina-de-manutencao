@@ -17,9 +17,11 @@ class ItensDoPedido
       @quantidade = quantidadeNova
       
       @@array_itens_do_pedido.map do |item|
-        if @id_pedido.eql?(item["id_pedido"]) && @id_produto.eql?(item["id_produto"])
-          item["quantidade"] = @quantidade
-          return true      
+        if @id_pedido.eql?(item["id_pedido"])
+          if @id_produto.eql?(item["id_produto"])
+            item["quantidade"] = @quantidade
+            return true 
+          end     
         end
       end
     end

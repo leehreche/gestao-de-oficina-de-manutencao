@@ -26,7 +26,10 @@ class Produtos
           return true      
         end
       end
+      puts "Produto não encontrado"
+        return false
     end
+    puts "Quantidade não compatível"
     return false
   end
 
@@ -41,12 +44,14 @@ class Produtos
             return true      
           end
         end
+        puts "Produto não encontrado"
+        return false
       else
         puts "Quantidade que deseja tirar é menor que a quantidade cadastrada no estoque"
         return false
       end
     end
-    puts "Produto não encontrado"
+    puts "Quantidade não compatível"
     return false
   end
 
@@ -79,11 +84,6 @@ class Produtos
   end
 
   def consultarProduto()
-    @@array_produtos.map do |produto|
-      if @id.eql?(produto["id"])
-        return produto   
-      end
-    end
-    return false
+    return self
   end 
 end

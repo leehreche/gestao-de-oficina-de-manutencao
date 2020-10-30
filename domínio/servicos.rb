@@ -1,3 +1,5 @@
+require_relative 'status'
+
 class Servicos
 
   @@idGlobalControle = 0
@@ -8,12 +10,12 @@ class Servicos
     @id_funcionario = nil
     @id_pedido = id_pedido
     @id_aparelho = id_aparelho
-    @descricaoServico = descricaoServiço
+    @descricaoServico = descricaoServico
     @statusAndamento = 1
 
     @@idGlobalControle += 1
     
-    novoServico = {"id" => @id, "id_funcionario" => id_funcionario, "id_pedido" => id_pedido, "id_aparelho" => id_aparelho, "descricaoServico" => descricaoServico, "statusAndamento" => statusAndamento}
+    novoServico = {"id" => @id, "id_funcionario" => @id_funcionario, "id_pedido" => id_pedido, "id_aparelho" => id_aparelho, "descricaoServico" => descricaoServico, "statusAndamento" => @statusAndamento}
   
     @@array_servicos << novoServico
   end
@@ -105,18 +107,17 @@ class Servicos
   def consultarStatusServico()
     @@array_servicos.map do |servico|
       if @id.eql?(servico["id"])
-        return servico["statusAndamento"]   
+        Status.class_variable_get(:@@array_status).map do |status|
+          if status["id"].eql?(servico["statusAndamento"])
+            return status["descricaoStatus"]   
+          end
+        end
       end
     end
     return false
   end
 
   def consultarServico()
-    @@array_servicos.map do |servico|
-      if @id.eql?(servico["id"])
-        return servico   
-      end
-    end
-    return false
+    return self
   end
 end
