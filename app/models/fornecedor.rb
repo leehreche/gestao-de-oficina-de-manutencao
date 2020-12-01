@@ -1,2 +1,0 @@
-class Fornecedor < ApplicationRecord
-end

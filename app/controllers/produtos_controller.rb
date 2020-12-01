@@ -30,7 +30,7 @@ class ProdutosController < ApplicationController
     def destroy
         @produto = Produto.find(params[:id])
         @produto.destroy
-        redirect_to clientes_path
+        redirect_to produtos_path
     end
 
     private

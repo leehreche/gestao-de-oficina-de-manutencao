@@ -1,0 +1,38 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Fornecedores</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Fornecedor', new_supplier_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Nome Fantasia</th>
+                <th scope="col">Telefone</th>		
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @suppliers.each do |supplier| %>
+                <tr>
+                    <th scope="row"><%= supplier.id %></td>
+                    <td><%= supplier.cnpj %></td>
+                    <td><%= supplier.nome_fantasia %></td>
+                    <td><%= supplier.telefone %></td>
+                    <td><%= link_to 'Visualizar', supplier, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_supplier_path(supplier),  class: "btn btn-outline-success" %></td>
+                    <td><%= button_to 'Excluir', supplier, method: :delete,class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

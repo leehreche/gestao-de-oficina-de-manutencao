@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_143829) do
+ActiveRecord::Schema.define(version: 2020_12_01_230837) do
 
   create_table "clientes", force: :cascade do |t|
     t.integer "cpf"
@@ -90,9 +90,35 @@ ActiveRecord::Schema.define(version: 2020_12_01_143829) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "tipo_status"
+    t.string "descricao_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "status", force: :cascade do |t|
+    t.string "tipo_status"
+    t.string "descricao_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.integer "tipo_status"
     t.string "descricao_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string "cnpj"
+    t.string "razao_social"
+    t.string "nome_fantasia"
+    t.string "endereco"
+    t.string "cidade"
+    t.string "estado"
+    t.string "telefone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

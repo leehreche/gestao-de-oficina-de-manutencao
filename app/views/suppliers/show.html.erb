@@ -1,7 +1,7 @@
 <div class="container text-left">
     <div class="row">
         <div class="col-1 text-left">
-            <%= link_to 'Voltar', fornecedores_path, class: "btn btn-dark" %>
+            <%= link_to 'Voltar', suppliers_path, class: "btn btn-dark" %>
         </div>
         <div class="col-11 text-center">
             <h1>Visualização de Cadastro de Fornecedor</h1>
@@ -14,31 +14,31 @@
         <div class="offset-2 col-8">
             <p>
                 <strong >CNPJ:</strong>
-                <%= @fornecedor.cnpj %>
+                <%= @supplier.cnpj %>
             </p>
             <p>
                 <strong >Razão Social:</strong>
-                <%= @fornecedor.razao_social %>
+                <%= @supplier.razao_social %>
             </p>
             <p>
                 <strong >Nome Fantasia:</strong>
-                <%= @fornecedor.nome_fantasia %>
+                <%= @supplier.nome_fantasia %>
             </p>
             <p>
                 <strong >Endereço:</strong>
-                <%= @fornecedor.endereco%>
+                <%= @supplier.endereco%>
             </p>
             <p>
                 <strong >Cidade:</strong>
-                <%= @fornecedor.cidade %>
+                <%= @supplier.cidade %>
             </p>
             <p>
                 <strong >Estado:</strong>
-                <%= @fornecedor.estado%>
+                <%= @supplier.estado%>
             </p>
             <p>
                 <strong >Telefone:</strong>
-                <%= @fornecedor.telefone %>
+                <%= @supplier.telefone %>
             </p>
         </div>
     </div>
