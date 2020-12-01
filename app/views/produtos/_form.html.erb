@@ -1,0 +1,30 @@
+<%=  form_with  model: @produto, local: true do |form| %>
+    
+    <div class="form-group">    
+        <p>
+            <%= form.label :Descrição %>
+            <br>
+            <%= form.text_field :descricao, class: "form-control", placeholder: "Ex.: LED Azul" %>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :Quantidade %>
+            <br>
+            <%= form.text_field :quantidade , class: "form-control", placeholder: "Ex.: 1"%>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :Preço %>
+            <br>
+            <%= form.text_field :preco, class: "form-control", placeholder: "Ex.: 0.75" %>
+        </p>
+    </div>
+
+    <p class="text-center">
+        <%= form.submit "Enviar Dados", class: "btn btn-dark" %>
+    </p>    
+<% end %>

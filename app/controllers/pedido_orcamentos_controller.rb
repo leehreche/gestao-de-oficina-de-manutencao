@@ -1,0 +1,2 @@
+class PedidoOrcamentosController < ApplicationController
+end

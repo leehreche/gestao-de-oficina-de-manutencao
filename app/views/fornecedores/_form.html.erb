@@ -1,0 +1,62 @@
+<%=  form_with  model: @fornecedor, local: true do |form| %>
+    
+    <div class="form-group">    
+        <p>
+            <%= form.label :CNPJ %>
+            <br>
+            <%= form.text_field :cnpj, class: "form-control", placeholder: "Ex.: 99999999/0001-99" %>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :"Razão Social" %>
+            <br>
+            <%= form.text_field :razao_social, class: "form-control", placeholder: "Ex.: Pontifícia Universidade Católica de Minas Gerais"%>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :"Nome Fantasia" %>
+            <br>
+            <%= form.text_field :nome_fantasia , class: "form-control", placeholder: "Ex.: PUC Minas"%>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :endereço %>
+            <br>
+            <%= form.text_field :endereco, class: "form-control", placeholder: "Ex.: Rua Assis Figueiredo, 204 - Centro" %>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :cidade %>
+            <br>
+            <%= form.text_field :cidade, class: "form-control", placeholder: "Ex.:São Sebastião" %>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :estado %>
+            <br>
+            <%= form.text_field :estado, class: "form-control", placeholder: "Ex.: São Paulo" %>
+        </p>
+    </div>
+
+    <div class="form-group"> 
+        <p>
+            <%= form.label :telefone %>
+            <br>
+            <%= form.text_field :telefone, class: "form-control", placeholder: "Ex.: 35 3737-3737" %>
+        </p>
+    </div>
+
+    <p class="text-center">
+        <%= form.submit "Enviar Dados", class: "btn btn-dark" %>
+    </p>    
+<% end %>

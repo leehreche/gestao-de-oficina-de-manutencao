@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GestaoDeOficinaDeManutencao</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>     
+    <%= render 'layouts/header'  %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render 'layouts/menu'  %>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 text-left">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

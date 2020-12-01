@@ -1,0 +1,25 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', tipo_aparelhos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Tipo de Aparelho</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Nome:</strong>
+                <%= @tipo_aparelho.nome %>
+            </p>
+            <p>
+                <strong >Prazo de Manutenção</strong>
+                <%= @tipo_aparelho.prazo_manutencao %>
+            </p>
+        </div>
+    </div>
+</div>

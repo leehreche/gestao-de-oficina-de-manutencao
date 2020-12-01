@@ -1,0 +1,25 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', status_index_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Status</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Descrição:</strong>
+                <%= @status.descricao %>
+            </p>
+            <p>
+                <strong >Tipo Status</strong>
+                <%= @status.tipo_status %>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Produtos</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Produto', new_produto_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Quantidade em estoque</th>
+                <th scope="col">Preço</th>		
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @produtos.each do |produto| %>
+                <tr>
+                    <th scope="row"><%= produto.id %></td>
+                    <td><%= produto.descricao %></td>
+                    <td><%= produto.quantidade %></td>
+                    <td>R$ <%= produto.preco %></td>
+                    <td><%= link_to 'Visualizar', produto, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_produto_path(produto),  class: "btn btn-outline-success" %></td>
+                    <td><%= link_to 'Excluir', produto, method: :delete, data: {confirm: 'Tem certeza?'}, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

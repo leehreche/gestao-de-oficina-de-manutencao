@@ -1,0 +1,2 @@
+class ServicosController < ApplicationController
+end

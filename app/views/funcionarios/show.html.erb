@@ -1,0 +1,29 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', funcionarios_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Funcionário</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >CPF:</strong>
+                <%= @funcionario.cpf %>
+            </p>
+            <p>
+                <strong >Nome:</strong>
+                <%= @funcionario.nome %>
+            </p>
+            <p>
+                <strong >Cargo:</strong>
+                <%= @funcionario.cargo %>
+            </p>
+        </div>
+    </div>
+</div>

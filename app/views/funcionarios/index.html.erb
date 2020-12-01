@@ -1,0 +1,38 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Funcionários</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Funcionário', new_funcionario_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Cargo</th>		
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @funcionarios.each do |funcionario| %>
+                <tr>
+                    <th scope="row"><%= funcionario.id %></td>
+                    <td><%= funcionario.cpf %></td>
+                    <td><%= funcionario.nome %></td>
+                    <td><%= funcionario.cargo %></td>
+                    <td><%= link_to 'Visualizar', funcionario, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_funcionario_path(funcionario),  class: "btn btn-outline-success" %></td>
+                    <td><%= link_to 'Excluir', funcionario, method: :delete, data: {confirm: 'Tem certeza?'}, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

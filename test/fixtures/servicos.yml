@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_funcionario: 1
+  id_pedido: 1
+  id_aparelho: 1
+  descricao_servico: MyString
+  status_andamento: 1
+
+two:
+  id_funcionario: 1
+  id_pedido: 1
+  id_aparelho: 1
+  descricao_servico: MyString
+  status_andamento: 1

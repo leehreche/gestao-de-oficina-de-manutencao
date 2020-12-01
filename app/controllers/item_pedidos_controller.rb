@@ -1,0 +1,2 @@
+class ItemPedidosController < ApplicationController
+end

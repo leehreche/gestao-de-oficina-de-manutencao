@@ -1,0 +1,36 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Tipo de Aparelho</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Tipo de Aparelho', new_tipo_aparelho_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Prazo de Manutenção</th>
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @tipo_aparelhos.each do |tipo_aparelho| %>
+                <tr>
+                    <th scope="row"><%= tipo_aparelho.id %></td>
+                    <td><%= tipo_aparelho.nome %></td>
+                    <td><%= tipo_aparelho.prazo_manutencao %> dias</td>
+                    <td><%= link_to 'Visualizar', tipo_aparelho, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_tipo_aparelho_path(tipo_aparelho),  class: "btn btn-outline-success" %></td>
+                    <td><%= link_to 'Excluir', tipo_aparelho, method: :delete, data: {confirm: 'Tem certeza?'}, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,36 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Status</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Status', new_status_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Tipo Status</th>
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @statuss.each do |status| %>
+                <tr>
+                    <th scope="row"><%= status.id %></td>
+                    <td><%= status.descricao %></td>
+                    <td><%= status.tipo_status %></td>
+                    <td><%= link_to 'Visualizar', status, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_status_path(status),  class: "btn btn-outline-success" %></td>
+                    <td><%= link_to 'Excluir', status, method: :delete, data: {confirm: 'Tem certeza?'}, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

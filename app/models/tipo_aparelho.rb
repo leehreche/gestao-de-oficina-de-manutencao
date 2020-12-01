@@ -1,0 +1,2 @@
+class TipoAparelho < ApplicationRecord
+end

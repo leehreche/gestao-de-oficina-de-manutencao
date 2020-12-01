@@ -1,0 +1,2 @@
+class PedidoOrcamento < ApplicationRecord
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_cliente: 1
+  id_aparelho: 1
+  valor_mao_de_obra: 1.5
+  status_autorizacao: 1
+
+two:
+  id_cliente: 1
+  id_aparelho: 1
+  valor_mao_de_obra: 1.5
+  status_autorizacao: 1
