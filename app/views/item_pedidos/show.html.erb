@@ -1,0 +1,25 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', item_pedidos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Item do Pedido</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Descrição do Produto:</strong>
+                <%= @produto.descricao %>
+            </p>
+            <p>
+                <strong >Quantidade:</strong>
+                <%= @item_pedido.quantidade %>
+            </p>
+        </div>
+    </div>
+</div>

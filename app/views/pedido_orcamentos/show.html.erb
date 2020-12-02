@@ -1,0 +1,41 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', pedido_orcamentos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Orçamento</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Data de Realização:</strong>
+                <%= @pedido_orcamento.data %>
+            </p>
+            <p>
+                <strong >Cliente:</strong>
+                <%= @cliente.nome %>
+            </p>
+            <p>
+                <strong >Tipo de Aparelho:</strong>
+                <%= @tipo_aparelho.nome %>
+            </p>
+            <p>
+                <strong >Valor da Mão de Obra:</strong>
+                R$ <%= @pedido_orcamento.valor_mao_de_obra %>
+            </p>
+            <p>
+                <strong >Status Autorização:</strong>
+                <%= @status_autorizacao.descricao_status %>
+            </p>
+            <p>
+                <strong >Funcionário Responsável:</strong>
+                <%= @funcionario.nome %>
+            </p>
+        </div>
+    </div>
+</div>

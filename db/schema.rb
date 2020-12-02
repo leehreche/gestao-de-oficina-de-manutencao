@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_230837) do
     t.integer "status_autorizacao"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "data"
+    t.integer "id_funcionario"
   end
 
   create_table "pedidos", force: :cascade do |t|

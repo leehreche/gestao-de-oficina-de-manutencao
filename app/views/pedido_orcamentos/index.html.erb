@@ -1,0 +1,51 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Orçamentos</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Orçamento', new_pedido_orcamento_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Data de Realização</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Valor da Mão de Obra</th>
+                <th scope="col">Status Autorização</th>		
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @pedido_orcamentos.each do |pedido_orcamento| %>
+                <tr>
+                    <th scope="row"><%= pedido_orcamento.id %></td>
+                    <td><%= pedido_orcamento.data%></td>
+                    <td><% @clientes.each do |cliente|
+                            if pedido_orcamento.id_cliente == cliente.id %>
+                                <%= cliente.nome %>
+                            <% end
+                        end %>
+                    </td>
+                    <td>R$ <%= pedido_orcamento.valor_mao_de_obra %></td>
+                    <td><% @status_autorizacoes.each do |status_autorizacao|
+                            if pedido_orcamento.status_autorizacao== status_autorizacao.id %>
+                                <%= status_autorizacao.descricao_status %>
+                            <% end
+                        end %>
+                    </td>
+                    <td><%= link_to 'Visualizar', pedido_orcamento, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_pedido_orcamento_path(pedido_orcamento),  class: "btn btn-outline-success" %></td>
+                    <td><%= link_to 'Adicionar Produtos', item_pedidos,  class: "btn btn-outline-warning" %></td>
+                    <td><%= button_to 'Excluir', pedido_orcamento, method: :delete, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

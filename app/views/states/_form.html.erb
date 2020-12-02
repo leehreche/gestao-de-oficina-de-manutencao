@@ -12,7 +12,7 @@
         <p>
             <%= form.label :"Tipo de Status" %>
             <br>
-            <%= form.text_field :tipo_status , class: "form-control", placeholder: "Ex.: Área Financeira"%>
+            <%= form.select :tipo_status, [['Autorização','Autorização'], ['Andamento','Andamento']] , class: "form-control", placeholder: "Ex.: Escolha um tipo de status" %>
         </p>
     </div>
     
