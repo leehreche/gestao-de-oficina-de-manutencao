@@ -17,7 +17,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Data de Realização</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">Valor da Mão de Obra</th>
+                <th scope="col">Mão de Obra</th>
                 <th scope="col">Status Autorização</th>		
                 <th scope="col" colspan="3">Ações</th>
             </tr>
@@ -40,9 +40,9 @@
                             <% end
                         end %>
                     </td>
+                    <td><%= link_to 'Listagem de Produtos', pedido_orcamento_item_orcamentos_path(pedido_orcamento.id), class: "btn btn-outline-dark" %></td>
                     <td><%= link_to 'Visualizar', pedido_orcamento, class: "btn btn-outline-primary" %></td>
                     <td><%= link_to 'Editar', edit_pedido_orcamento_path(pedido_orcamento),  class: "btn btn-outline-success" %></td>
-                    <td><%= link_to 'Adicionar Produtos', item_pedidos,  class: "btn btn-outline-warning" %></td>
                     <td><%= button_to 'Excluir', pedido_orcamento, method: :delete, class: "btn btn-outline-danger" %></td>
                 </tr>
             <% end %>

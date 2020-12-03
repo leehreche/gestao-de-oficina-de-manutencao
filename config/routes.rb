@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :states
   resources :tipo_aparelhos
 
-  resources :pedido_orcamentos
+  resources :pedido_orcamentos do
+    resources :item_orcamentos
+  end
 
   resources :pedido_suppliers do
     resources :item_pedidos

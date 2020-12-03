@@ -1,59 +1,67 @@
 class ItemPedidosController < ApplicationController
 
-    @@id_pedido = 0
-
     def index
         @pedido_supplier = PedidoSupplier.find(params[:pedido_supplier_id])
-        @item_pedidos = ItemPedido.where(id_pedido: params[:pedido_supplier_id])
-        @@id_pedido = @pedido_supplier.id
+        @item_pedidos = ItemPedido.where(pedido_supplier_id: params[:pedido_supplier_id])
+        @id_pedido = @pedido_supplier.id
         @produtos = Produto.all
     end
 
     def show
         @item_pedido = ItemPedido.find(params[:id])
-        @produto = Produto.find(@item_pedido.id_produto)
+        @produto = Produto.find(@item_pedido.produto_id)
     end
 
     def new
         @item_pedido = ItemPedido.new
         @produtos = Produto.all
-        @id_pedido = @@id_pedido
+        @pedido_supplier = PedidoSupplier.find(params[:pedido_supplier_id])
         puts "Entrei no NEW"
     end
 
     def create
         puts "Entrei no CREATE1"
-        @item_pedido = ItemPedido.new(item_pedido_params, @@id_pedido)
-        puts "Entrei no CREATE"
+        @item_pedido = ItemPedido.new(item_pedido_params)
+        @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
+        
         if @item_pedido.save 
-            puts "Entrei no SAVE"      
-            @pedido_supplier = PedidoSupplier.find(@@id_pedido)
-            redirect_to pedido_supplier_item_pedidos_url(@pedido_supplier)
+            @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
+            redirect_to pedido_supplier_item_pedido_path(@pedido_supplier, @item_pedido)
+            puts @item_pedido
         else
-            puts "Entrei no ELSE"
-            render :new
+            puts "Deu ruim"
         end
     end
 
     def edit
         @item_pedido = ItemPedido.find(params[:id])
+        @pedido_supplier = PedidoSupplier.find(params[:pedido_supplier_id])
         @produtos = Produto.all
     end
 
     def update
-        @item_pedido = ItemPedido.find(params[:id])
-        @item_pedido.update(item_pedido_params, @@id_pedido)
-        redirect_to @item_pedido
+        @item_pedido = ItemPedido.find(params[:id])        
+        if @item_pedido.update(item_pedido_params)
+            @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
+            redirect_to pedido_supplier_item_pedido_path(@pedido_supplier, @item_pedido)
+            puts @item_pedido
+        else
+            puts "Deu ruim"
+        end
     end
 
     def destroy
         @item_pedido = ItemPedido.find(params[:id])
-        @item_pedido.destroy
-        redirect_to item_pedidos_path
+        @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
+        if @item_pedido.destroy
+            redirect_to pedido_supplier_item_pedidos_path(@pedido_supplier)
+        else
+            puts "Deu ruim"
+        end
     end
 
     private
     def item_pedido_params
-        params.require(:item_pedido).permit(:id_produto, :quantidade)
+        params.require(:item_pedido).permit(:produto_id, :pedido_supplier_id, :quantidade)
     end
 end

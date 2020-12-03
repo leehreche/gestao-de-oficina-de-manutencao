@@ -38,9 +38,18 @@ class PedidoOrcamentosController < ApplicationController
     end
 
     def update
+        @aprovado = 0
+
+        @status_autorizado = State.where(descricao_status: 'Autorizado pelo Cliente')
         @pedido_orcamento = PedidoOrcamento.find(params[:id])
         @pedido_orcamento.update(pedido_params)
-        redirect_to @pedido_orcamento
+
+        if Integer(@pedido_orcamento.status_autorizacao) == Integer(@status_autorizado.ids[0])
+            puts "********Chamar controler de servico#new"
+        else
+            puts "********Falso"
+            redirect_to @pedido_orcamento
+        end
     end
 
     def destroy

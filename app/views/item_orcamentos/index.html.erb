@@ -1,0 +1,44 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', pedido_orcamentos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-9 text-center">
+            <h1>Itens do Orçamento</h1>
+        </div>
+
+        <div class="col-2 text-right">
+            <%= link_to 'Adicionar Item', new_pedido_orcamento_item_orcamento_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descricao</th>
+                <th scope="col">Quantidade</th>	
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @item_orcamentos.each do |item_orcamento| %>
+                <tr>
+                    <th scope="row"><%= item_orcamento.id %></td>
+                    <td><% @produtos.each do |produto|
+                            if item_orcamento.produto_id == produto.id %>
+                                <%= produto.descricao %>
+                            <% end
+                        end %>
+                    </td>
+                    <td><%= item_orcamento.quantidade %></td>
+                    <td><%= link_to 'Visualizar', pedido_orcamento_item_orcamento_path(@pedido_orcamento, item_orcamento), class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_pedido_orcamento_item_orcamento_path(@pedido_orcamento, item_orcamento),  class: "btn btn-outline-success" %></td>
+                    <td><%= button_to 'Excluir', pedido_orcamento_item_orcamento_path(@pedido_orcamento, item_orcamento), method: :delete, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

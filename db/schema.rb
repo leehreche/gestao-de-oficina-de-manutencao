@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_02_033906) do
+ActiveRecord::Schema.define(version: 2020_12_03_195059) do
 
   create_table "clientes", force: :cascade do |t|
     t.integer "cpf"
@@ -43,9 +43,17 @@ ActiveRecord::Schema.define(version: 2020_12_02_033906) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_orcamentos", force: :cascade do |t|
+    t.integer "produto_id"
+    t.integer "pedido_orcamento_id"
+    t.integer "quantidade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "item_pedidos", force: :cascade do |t|
-    t.integer "id_produto"
-    t.integer "id_pedido"
+    t.integer "produto_id"
+    t.integer "pedido_supplier_id"
     t.integer "quantidade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
