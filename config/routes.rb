@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   resources :clientes
   resources :suppliers
   resources :funcionarios
-  resources :item_pedidos
-  resources :pedido_fornecedores
-  resources :pedido_orcamentos
   resources :pedidos 
   resources :produtos
   resources :servicos
   resources :states
   resources :tipo_aparelhos
+
+  resources :pedido_orcamentos
+
+  resources :pedido_suppliers do
+    resources :item_pedidos
+  end
 
   root 'home#index'
 end

@@ -1,6 +1,11 @@
 class ItemPedidosController < ApplicationController
+
+    @@id_pedido = 0
+
     def index
-        @item_pedidos = ItemPedido.all
+        @pedido_supplier = PedidoSupplier.find(params[:pedido_supplier_id])
+        @item_pedidos = ItemPedido.where(id_pedido: params[:pedido_supplier_id])
+        @@id_pedido = @pedido_supplier.id
         @produtos = Produto.all
     end
 
@@ -12,12 +17,22 @@ class ItemPedidosController < ApplicationController
     def new
         @item_pedido = ItemPedido.new
         @produtos = Produto.all
+        @id_pedido = @@id_pedido
+        puts "Entrei no NEW"
     end
 
     def create
-        @item_pedido = ItemPedido.new(item_pedido_params)
-        @item_pedido.save
-        redirect_to @item_pedido
+        puts "Entrei no CREATE1"
+        @item_pedido = ItemPedido.new(item_pedido_params, @@id_pedido)
+        puts "Entrei no CREATE"
+        if @item_pedido.save 
+            puts "Entrei no SAVE"      
+            @pedido_supplier = PedidoSupplier.find(@@id_pedido)
+            redirect_to pedido_supplier_item_pedidos_url(@pedido_supplier)
+        else
+            puts "Entrei no ELSE"
+            render :new
+        end
     end
 
     def edit
@@ -27,7 +42,7 @@ class ItemPedidosController < ApplicationController
 
     def update
         @item_pedido = ItemPedido.find(params[:id])
-        @item_pedido.update(item_pedido_params)
+        @item_pedido.update(item_pedido_params, @@id_pedido)
         redirect_to @item_pedido
     end
 
@@ -39,11 +54,6 @@ class ItemPedidosController < ApplicationController
 
     private
     def item_pedido_params
-        params.require(:item_pedido).permit(:id_produto, :id_pedido, :quantidade)
-    end
-
-    private
-    def pedido_params
-        params_pedido.require(:pedido_orcamento).permit(:id)
+        params.require(:item_pedido).permit(:id_produto, :quantidade)
     end
 end

@@ -1,13 +1,5 @@
-<%=  form_with  model: @item_pedido, local: true do |form| %>
+<%=  form_with  model: @pedido_supplier_item_pedido, local: true do |form| %>
     
-    <div class="form-group">    
-        <p>
-            <%= form.label :"Id do Pedido" %>
-            <br>
-            <%= form.text_field :id_pedido, @item_pedido.id_pedido, class: "form-control", placeholder: "Ex.: Pendente" %>
-        </p>
-    </div>
-
     <div class="form-group"> 
         <p>
             <%= form.label :"Produto" %>
@@ -20,7 +12,7 @@
         <p>
             <%= form.label :"Quantidade" %>
             <br>
-            <%= form.text_field :quantidade, class: "form-control", placeholder: "Ex.: R$ 230.00" %>
+            <%= form.text_field :quantidade, class: "form-control", placeholder: "Ex.: 12" %>
         </p>
     </div>   
     

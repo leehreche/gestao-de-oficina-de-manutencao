@@ -1,0 +1,29 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', pedido_suppliers_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Pedido de Fornecedor</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Data de Realização:</strong>
+                <%= @pedido_supplier.data %>
+            </p>
+            <p>
+                <strong >Fornecedor:</strong>
+                <%= @supplier.nome_fantasia %>
+            </p>
+            <p>
+                <strong >Funcionário Responsável:</strong>
+                <%= @funcionario.nome %>
+            </p>
+        </div>
+    </div>
+</div>

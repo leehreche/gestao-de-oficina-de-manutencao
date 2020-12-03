@@ -1,0 +1,42 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1>Pedidos de Fornecedor</h1>
+        </div>
+
+        <div class="col-6 text-right">
+            <%= link_to 'Novo Pedido de Fornecedor', new_pedido_supplier_path, class: "btn btn-dark" %>
+        </div>
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <table class="table table-striped"> 
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Data de Realização</th>
+                <th scope="col">Fornecedor</th>	
+                <th scope="col" colspan="3">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @pedido_suppliers.each do |pedido_supplier| %>
+                <tr>
+                    <th scope="row"><%= pedido_supplier.id %></td>
+                    <td><%= pedido_supplier.data%></td>
+                    <td><% @suppliers.each do |supplier|
+                            if pedido_supplier.id_fornecedor == supplier.id %>
+                                <%= supplier.nome_fantasia %>
+                            <% end
+                        end %>
+                    </td>
+                    <td><%= link_to 'Listagem de Produtos', pedido_supplier_item_pedidos_path(pedido_supplier.id), class: "btn btn-outline-dark" %></td>
+                    <td><%= link_to 'Visualizar', pedido_supplier, class: "btn btn-outline-primary" %></td>
+                    <td><%= link_to 'Editar', edit_pedido_supplier_path(pedido_supplier),  class: "btn btn-outline-success" %></td>
+                    <td><%= button_to 'Excluir', pedido_supplier, method: :delete, class: "btn btn-outline-danger" %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

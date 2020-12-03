@@ -1,0 +1,2 @@
+module PedidoSuppliersHelper
+end
