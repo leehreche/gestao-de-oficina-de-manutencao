@@ -22,7 +22,7 @@
                                 <strong>Quantidade Total em Estoque: </strong>
                                 <%= produto.quantidade %>                    
                                 <strong> --- Valor em Estoque: </strong>
-                                R$ <%= produto.quantidade * produto.preco %>
+                                R$ <%= '%.2f' % (produto.quantidade * produto.preco) %>
                             </p>
                         </div>
                         <div class="col-2 text-center" style="display:flex; align-items: center;">
@@ -65,18 +65,18 @@
                                     </div>
                                     <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
                                         <strong>Valor Unitário</strong>
-                                        <p>R$ <%= produto.preco %></p>
+                                        <p>R$ <%= '%.2f' % (produto.preco) %></p>
                                     </div>
                                     <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
                                         <strong>Valor Total</strong>
-                                        <p>R$ <%= produto.preco * item_orcamento.quantidade %></p>
+                                        <p>R$ <%= '%.2f' % (produto.preco * item_orcamento.quantidade) %></p>
                                     </div>
                                 </div>
                             </div>
                             <% end %>
                             <% end %>
                         <% if @sem_dados == 0 %>
-                            <p class="text-center"> Não há entradas cadastradas para esse produto </p>
+                            <p class="text-center"> Não há saídas cadastradas para esse produto </p>
                         <% end %>
                     </div>                 
                 </div>

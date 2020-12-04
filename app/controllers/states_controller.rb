@@ -13,8 +13,13 @@ class StatesController < ApplicationController
 
     def create
         @state = State.new(state_params)
-        @state.save
-        redirect_to @state
+
+        if @state.valid?
+            @state.save
+            redirect_to @state
+        else
+            render :new
+        end
     end
 
     def edit

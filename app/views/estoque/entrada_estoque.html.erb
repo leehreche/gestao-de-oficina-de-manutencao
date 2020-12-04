@@ -22,7 +22,7 @@
                                 <strong>Quantidade Total em Estoque: </strong>
                                 <%= produto.quantidade %>                    
                                 <strong> --- Valor em Estoque: </strong>
-                                R$ <%= produto.quantidade * produto.preco %>
+                                R$ <%= '%.2f' % (produto.quantidade * produto.preco) %>
                             </p>
                         </div>
                         <div class="col-2 text-center" style="display:flex; align-items: center;">
@@ -65,11 +65,11 @@
                                     </div>
                                     <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
                                         <strong>Valor Unitário</strong>
-                                        <p>R$ <%= produto.preco %></p>
+                                        <p>R$ <%= '%.2f' % produto.preco %></p>
                                     </div>
                                     <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
                                         <strong>Valor Total</strong>
-                                        <p>R$ <%= produto.preco * item_pedido.quantidade %></p>
+                                        <p>R$ <%= '%.2f' % (produto.preco * item_pedido.quantidade) %></p>
                                     </div>
                                 </div>
                             </div>

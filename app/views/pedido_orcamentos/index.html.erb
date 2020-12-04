@@ -35,7 +35,7 @@
                     </td>
                     <td><% @array_valor_total.each do |valor_total|
                             if valor_total["pedido_orcamento_id"] == pedido_orcamento.id %>
-                                R$ <%= valor_total["valor_total"] %>
+                                R$ <%= '%.2f' % valor_total["valor_total"] %>
                             <% end
                         end %>
                     </td>

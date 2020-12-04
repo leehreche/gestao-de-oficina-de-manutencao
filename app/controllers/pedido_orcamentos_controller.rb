@@ -6,7 +6,6 @@ class PedidoOrcamentosController < ApplicationController
         @status_autorizacoes = State.where(tipo_status: 'Autorização')
         @funcionarios = Funcionario.all
         @array_valor_total = calcular_valor_total(@pedido_orcamentos)
-        puts "~~~~~~~~~~PRINTANDO O ARRAY ~~~~~~~~"
         puts @array_valor_total
     end
 
@@ -16,6 +15,7 @@ class PedidoOrcamentosController < ApplicationController
         @tipo_aparelho = TipoAparelho.find(@pedido_orcamento.id_aparelho)
         @status_autorizacao = State.find(@pedido_orcamento.status_autorizacao)
         @funcionario = Funcionario.find(@pedido_orcamento.id_funcionario)
+        @valor_produto = calcular_valor_produto_pedido(@pedido_orcamento)
     end
 
     def new
@@ -56,8 +56,12 @@ class PedidoOrcamentosController < ApplicationController
 
     def destroy
         @pedido_orcamento = PedidoOrcamento.find(params[:id])
-        @pedido_orcamento.destroy
-        redirect_to pedido_orcamentos_path
+        if excluir_item_orcamento(@pedido_orcamento)
+            @pedido_orcamento.destroy
+            redirect_to pedido_orcamentos_path
+        else
+            puts "Não pode"
+        end
     end
 
     private
@@ -79,5 +83,25 @@ class PedidoOrcamentosController < ApplicationController
             @array << @item
         end  
         return @array      
+    end
+
+    private
+    def calcular_valor_produto_pedido(pedido_orcamento)
+        @valor_produto = 0
+        @item_orcamentos = ItemOrcamento.where(pedido_orcamento_id: pedido_orcamento.id)
+        @item_orcamentos.each do |item_orcamento|
+            @produto = Produto.find(item_orcamento.produto_id)
+            @valor_produto += @produto.preco * item_orcamento.quantidade
+        end         
+        return @valor_produto     
+    end
+
+    private 
+    def excluir_item_orcamento(pedido_orcamento)
+        @item_orcamentos = ItemOrcamento.where(pedido_orcamento_id: pedido_orcamento.id)
+        if @item_orcamentos != NIL
+            return false
+        end
+        return true
     end
 end

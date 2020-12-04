@@ -13,3 +13,43 @@
  */
 
  @import 'bootstrap';
+
+ #menu_lateral{
+    height: 93vh;
+    position: fixed;
+    background: #D3D3D3!important;
+    color: #1c1c1c!important;
+ }
+
+ .cabecalho{
+    background: #000A14;
+    color: #ffffff!important;
+    font-weight: bold;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    margin-top:0.5em !important;
+ }
+
+ .item-menu{
+    background: #d8d8d8;
+    color: #1c1c1c;
+ }
+
+ .nav-item a {
+    color: #1c1c1c;
+    display: block;
+    padding: 0.6em;
+    text-decoration: none;
+  }
+  
+  .nav-item a:hover {
+    background-color: #aaa;
+  }
+
+  .entrada {
+    background: #ffffeb!important;
+}
+
+.saida {
+    background: #f6fff6!important;
+}

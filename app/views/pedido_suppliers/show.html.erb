@@ -24,6 +24,10 @@
                 <strong >Funcionário Responsável:</strong>
                 <%= @funcionario.nome %>
             </p>
+            <br/><br/>
+            <div class="col-12 text-center">
+                <%= link_to 'Visualizar Itens Desse Pedido', pedido_supplier_item_pedidos_path(@pedido_supplier.id), class: "btn btn-outline-dark" %>
+            </div>
         </div>
     </div>
 </div>

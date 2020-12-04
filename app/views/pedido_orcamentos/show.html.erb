@@ -25,8 +25,20 @@
                 <%= @tipo_aparelho.nome %>
             </p>
             <p>
+                <strong >Prazo Estimado de Manutenção:</strong>
+                <%= @tipo_aparelho.prazo_manutencao %> dias (a contar a partir da data de aprovação)
+            </p>
+            <p>
+                <strong >Valor Total:</strong>
+                R$ <%= '%.2f' % (@pedido_orcamento.valor_mao_de_obra + @valor_produto) %>
+            </p>
+            <p>
                 <strong >Valor da Mão de Obra:</strong>
-                R$ <%= @pedido_orcamento.valor_mao_de_obra %>
+                R$ <%= '%.2f' % @pedido_orcamento.valor_mao_de_obra %>
+            </p>
+            <p>
+                <strong >Valor dos Produtos:</strong>
+                R$ <%= '%.2f' % @valor_produto %>
             </p>
             <p>
                 <strong >Status Autorização:</strong>
@@ -36,6 +48,10 @@
                 <strong >Funcionário Responsável:</strong>
                 <%= @funcionario.nome %>
             </p>
+            <br/><br/>
+            <div class="col-12 text-center">
+                <%= link_to 'Visualizar Itens Desse Orçamento', pedido_orcamento_item_orcamentos_path(@pedido_orcamento.id), class: "btn btn-outline-dark" %>
+            </div>
         </div>
     </div>
 </div>
