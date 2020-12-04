@@ -1,0 +1,53 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', servicos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Visualização de Cadastro de Serviço</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8">
+            <p>
+                <strong >Data de Solicitação de Serviço:</strong>
+                <%= @servico.data %>
+            </p>
+            <p>
+                <strong >Descrição do Serviço:</strong>
+                <%= @servico.descricao_servico %>
+            </p>
+            <p>
+                <strong >Pedido Orçamento Referente: </strong>
+                Pedido <%= @servico.pedido_orcamento_id %>
+            </p>
+            <p>
+                <strong >Status Andamento</strong>
+                <%= @status_andamento.descricao_status %>
+            </p>
+            <p>
+                <strong >Tipo de Aparelho:</strong>
+                <%= @tipo_aparelho.nome %>
+            </p>
+            <p>
+                <strong >Prazo de Entrega:</strong>
+                <%= @tipo_aparelho.prazo_manutencao %> dias
+            </p>
+            <p>
+                <strong >Cadastrado por:</strong>
+                <%= @funcionario_cadastro.nome %>
+            </p>
+            <p>
+                <strong >Responsabilidade de:</strong>
+                <% if @funcionario_responsabilidade == 0 %>
+                    Ainda sem funcionário responsável
+                <% else %>
+                    <%= @funcionario_responsabilidade.nome %>
+                <% end %>
+            </p>
+        </div>
+    </div>
+</div>

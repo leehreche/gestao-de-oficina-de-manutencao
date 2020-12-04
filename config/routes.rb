@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+
+  get 'servico/:id/assumir', controller: 'servicos', action: 'assumir', as: 'assumir_servico'
+  post 'servico/:id/assumir', controller: 'servicos', action: 'assumir_responsabilidade', as: 'assumir_responsabilidade_post'
+  put 'servico/:id/assumir', controller: 'servicos', action: 'assumir_responsabilidade', as: 'assumir_responsabilidade_put'
+  patch 'servico/:id/assumir', controller: 'servicos', action: 'assumir_responsabilidade', as: 'assumir_responsabilidade_patch'
 end

@@ -1,0 +1,30 @@
+<div class="container text-left">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', servicos_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-center">
+            <h1>Assumir Responsabilidade de Serviço</h1>
+        </div>        
+    </div>   
+    <hr>
+    <br/><br/>
+
+    <div class="row">
+        <div class="offset-2 col-8 text-center">
+            <%=  form_with  url: assumir_responsabilidade_put_path(@servico), local: true do |form| %>    
+                <div class="form-group"> 
+                    <p>
+                        <%= form.label :"Sob responsabilidade de" %>
+                        <br>
+                        <%= form.collection_select :funcionario_responsabilidade_id, @funcionarios, :id, :nome, class: "form-control", placeholder: "Ex.: Área Financeira"%>
+                    </p>
+                </div>
+            
+                <p class="text-center">
+                    <%= form.submit "Enviar Dados", class: "btn btn-dark" %>
+                </p>    
+            <% end %>
+        </div>
+    </div>
+</div>

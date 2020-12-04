@@ -1,2 +1,3 @@
 class Servico < ApplicationRecord
+    
 end

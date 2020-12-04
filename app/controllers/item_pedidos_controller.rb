@@ -16,11 +16,9 @@ class ItemPedidosController < ApplicationController
         @item_pedido = ItemPedido.new
         @produtos = Produto.all
         @pedido_supplier = PedidoSupplier.find(params[:pedido_supplier_id])
-        puts "Entrei no NEW"
     end
 
     def create
-        puts "Entrei no CREATE1"
         @item_pedido = ItemPedido.new(item_pedido_params)
         @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
         

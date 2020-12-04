@@ -46,6 +46,7 @@ class PedidoOrcamentosController < ApplicationController
 
         if Integer(@pedido_orcamento.status_autorizacao) == Integer(@status_autorizado.ids[0])
             puts "********Chamar controler de servico#new"
+            redirect_to new_servico_path
         else
             puts "********Falso"
             redirect_to @pedido_orcamento
