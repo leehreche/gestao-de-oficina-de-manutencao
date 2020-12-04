@@ -14,6 +14,7 @@ class ProdutosController < ApplicationController
     def create
         @produto = Produto.new(produto_params)
         @produto.save
+        flash.now[:notice] = "Produto Cadastrado com sucesso!"
         redirect_to @produto
     end
 

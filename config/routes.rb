@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  get 'estoque', controller: 'estoque', action: 'estoque', as: 'estoque'
+  get 'estoque/saidas', controller: 'estoque', action: 'saida_estoque', as: 'saida_estoque'
+  get 'estoque/entradas', controller: 'estoque', action: 'entrada_estoque', as: 'entrada_estoque'
+
   get 'servico/:id/assumir', controller: 'servicos', action: 'assumir', as: 'assumir_servico'
   post 'servico/:id/assumir', controller: 'servicos', action: 'assumir_responsabilidade', as: 'assumir_responsabilidade_post'
   put 'servico/:id/assumir', controller: 'servicos', action: 'assumir_responsabilidade', as: 'assumir_responsabilidade_put'

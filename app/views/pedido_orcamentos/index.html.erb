@@ -17,7 +17,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Data de Realização</th>
                 <th scope="col">Cliente</th>
-                <th scope="col">Mão de Obra</th>
+                <th scope="col">Valor Total</th>
                 <th scope="col">Status Autorização</th>		
                 <th scope="col" colspan="3">Ações</th>
             </tr>
@@ -33,7 +33,12 @@
                             <% end
                         end %>
                     </td>
-                    <td>R$ <%= pedido_orcamento.valor_mao_de_obra %></td>
+                    <td><% @array_valor_total.each do |valor_total|
+                            if valor_total["pedido_orcamento_id"] == pedido_orcamento.id %>
+                                R$ <%= valor_total["valor_total"] %>
+                            <% end
+                        end %>
+                    </td>
                     <td><% @status_autorizacoes.each do |status_autorizacao|
                             if pedido_orcamento.status_autorizacao== status_autorizacao.id %>
                                 <%= status_autorizacao.descricao_status %>

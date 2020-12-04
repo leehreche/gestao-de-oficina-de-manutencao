@@ -1,0 +1,87 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-1 text-left">
+            <%= link_to 'Voltar', estoque_path, class: "btn btn-dark" %>
+        </div>
+        <div class="col-11 text-centere">
+            <h1>Entradas no Estoque</h1>
+        </div>
+    </div>   
+    <hr>
+    <br/>    
+    
+    <% @produtos.each do |produto| %>
+    <div class="row" style="margin-bottom:0.5em;">
+        <div class="col-12">
+            <div class="card border-warning" style="width: 100%;">
+                <div class="card-body">                    
+                    <div class="row" style="display:flex;">
+                        <div class="col-10 text-center" style="display:flex; flex-direction: column; align-items: center;">
+                            <h5 class="card-title"><strong>Produto: </strong> <%= produto.descricao %></h5>
+                            <p>
+                                <strong>Quantidade Total em Estoque: </strong>
+                                <%= produto.quantidade %>                    
+                                <strong> --- Valor em Estoque: </strong>
+                                R$ <%= produto.quantidade * produto.preco %>
+                            </p>
+                        </div>
+                        <div class="col-2 text-center" style="display:flex; align-items: center;">
+                            <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target= <%= "#produto#{produto.id}"  %> aria-expanded="false" aria-controls= <%= "produto#{produto.id}" %> >Detalhes</button>
+                        </div>
+                    </div>  
+                    <div class="collapse" id= <%= "produto#{produto.id}" %> >    
+                        <hr style="margin-top:1.5em; margin-bottom:2em;"> 
+                        
+                        <% 
+                            @indice = 0
+                            @sem_dados = 0
+                            @item_pedidos.each do |item_pedido| 
+                            if item_pedido.produto_id == produto.id 
+                                @indice += 1
+                                @sem_dados += 1
+                        %>
+
+                            <div class="card card-body bg-warning text-center" style="margin-bottom:0.5em; padding-bottom:5px;">
+                                <div class="row">
+                                    <div class="col-2" style="display:flex; align-items: center;">
+                                        <p><strong><%= @indice %></strong></p>
+                                    </div>
+                                    <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
+                                        <strong>Data de Saída</strong>
+                                        <p><% @pedido_suppliers.each do |pedido_supplier|
+                                                if pedido_supplier.id == item_pedido.pedido_supplier_id %>
+                                                    <%= pedido_supplier.data %>
+                                                <%end
+                                            end %>
+                                        </p>
+                                    </div>
+                                    <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
+                                        <strong>Ref. Pedido</strong>
+                                        <p>Ped. Forn. nº <%= item_pedido.pedido_supplier_id %></p>
+                                    </div>
+                                    <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
+                                        <strong>Quantidade</strong>
+                                        <p><%= item_pedido.quantidade %></p>
+                                    </div>
+                                    <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
+                                        <strong>Valor Unitário</strong>
+                                        <p>R$ <%= produto.preco %></p>
+                                    </div>
+                                    <div class="col-2" tyle="display:flex; flex-direction: column; align-items: center;">
+                                        <strong>Valor Total</strong>
+                                        <p>R$ <%= produto.preco * item_pedido.quantidade %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                            <% end %>
+                        <% if @sem_dados == 0 %>
+                            <p class="text-center"> Não há entradas cadastradas para esse produto </p>
+                        <% end %>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
