@@ -29,12 +29,36 @@ class TipoAparelhosController < ApplicationController
 
     def destroy
         @tipo_aparelho = TipoAparelho.find(params[:id])
-        @tipo_aparelho.destroy
-        redirect_to tipo_aparelhos_path
+        if excluir_tipo_aparelho(@tipo_aparelho)
+            @tipo_aparelho.destroy
+            redirect_to tipo_aparelhos_path
+        else
+            puts "Não pode"
+        end
     end
 
     private
     def tipo_aparelho_params
         params.require(:tipo_aparelho).permit(:nome, :prazo_manutencao)
+    end
+
+    private 
+    def excluir_tipo_aparelho(tipo_aparelho)
+        @contagem = 0
+        @pedido_orcamentos = PedidoOrcamento.where(id_aparelho: tipo_aparelho.id)
+        if @pedido_orcamentos.empty?
+            @contagem += 1
+        end
+
+        @servicos = Servico.where(tipo_aparelho_id: tipo_aparelho.id)
+        if @servicos.empty?
+            @contagem += 1
+        end
+
+        if @contagem == 2
+            return true
+        else
+            return false
+        end
     end
 end

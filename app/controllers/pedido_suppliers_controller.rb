@@ -37,12 +37,27 @@ class PedidoSuppliersController < ApplicationController
 
     def destroy
         @pedido_supplier = PedidoSupplier.find(params[:id])
-        @pedido_supplier.destroy
-        redirect_to pedido_suppliers_path
+        if excluir_item_supplier(@pedido_supplier)
+            @pedido_supplier.destroy
+            redirect_to pedido_suppliers_path
+        else
+            puts "Não pode"
+        end
+        
     end
 
     private
     def pedido_params
         params.require(:pedido_supplier).permit(:id_fornecedor, :data, :id_funcionario)
     end
+
+    private 
+    def excluir_item_supplier(pedido_supplier)
+        @item_pedidos = ItemPedido.where(pedido_supplier_id: pedido_supplier.id)
+        if @item_pedidos.empty?
+            return true
+        end
+        return false
+    end
+    
 end

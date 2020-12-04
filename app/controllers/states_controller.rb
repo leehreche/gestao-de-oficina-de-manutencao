@@ -18,6 +18,7 @@ class StatesController < ApplicationController
             @state.save
             redirect_to @state
         else
+            flash[:notice] = "É necessário preencher todos os campos."
             render :new
         end
     end
@@ -34,12 +35,36 @@ class StatesController < ApplicationController
 
     def destroy
         @state = State.find(params[:id])
-        @state.destroy
-        redirect_to states_path
+        if excluir_state(@state)
+            @state.destroy
+            redirect_to states_path
+        else
+            puts "Não pode"
+        end
     end
 
     private
     def state_params
         params.require(:state).permit(:tipo_status, :descricao_status)
+    end
+
+    private 
+    def excluir_state(state)
+        @contagem = 0
+        @pedido_orcamentos = PedidoOrcamento.where(status_autorizacao: state.id)
+        if @pedido_orcamentos.empty?
+            @contagem += 1
+        end
+
+        @servicos = Servico.where(state_id: state.id)
+        if @servicos.empty?
+            @contagem += 1
+        end
+
+        if @contagem == 2
+            return true
+        else
+            return false
+        end
     end
 end

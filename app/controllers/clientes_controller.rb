@@ -29,12 +29,26 @@ class ClientesController < ApplicationController
 
     def destroy
         @cliente = Cliente.find(params[:id])
-        @cliente.destroy
-        redirect_to clientes_path
+
+        if excluir_cliente(@cliente)
+            @cliente.destroy
+            redirect_to clientes_path
+        else
+            puts "Não pode"
+        end
     end
 
     private
     def cliente_params
         params.require(:cliente).permit(:cpf, :nome, :endereco, :cidade, :estado, :telefone)
     end 
+
+    private 
+    def excluir_cliente(cliente)
+        @pedido_orcamentos = PedidoOrcamento.where(id_cliente: cliente.id)
+        if @pedido_orcamentos.empty?
+            return true
+        end
+        return false
+    end
 end

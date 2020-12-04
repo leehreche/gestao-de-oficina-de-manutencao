@@ -20,18 +20,23 @@ class ItemOrcamentosController < ApplicationController
     def create
         @item_orcamento = ItemOrcamento.new(item_orcamento_params)
         @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
-        
-        if remover_produto(@item_orcamento.produto_id, @item_orcamento.quantidade)
-            if @item_orcamento.save 
-                @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
-                redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
-                puts @item_orcamento
+
+        if atualizar_produto(@item_orcamento.produto_id, @item_orcamento.quantidade)
+            if remover_produto(@item_orcamento.produto_id, @item_orcamento.quantidade)
+                if @item_orcamento.save 
+                    @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
+                    redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
+                    puts @item_orcamento
+                else
+                    puts "Deu ruim"
+                end
             else
-                puts "Deu ruim"
+                puts "OPS"
             end
         else
-            puts "OPS"
+            puts "Quantidade inválida"
         end
+        
         
     end
 
@@ -45,18 +50,22 @@ class ItemOrcamentosController < ApplicationController
         @item_orcamento = ItemOrcamento.find(params[:id])  
         @quantidade_anterior = @item_orcamento.quantidade
         @quantidade_atual = params[:item_orcamento][:quantidade]
-        
-        if adicionar_produto(@item_orcamento.produto_id, @quantidade_anterior) && remover_produto(@item_orcamento.produto_id, @quantidade_atual.to_i)
-            if @item_orcamento.update(item_orcamento_params)
-                @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
-                redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
-                puts @item_orcamento
+
+        if atualizar_produto(@item_orcamento.produto_id, @quantidade_atual)        
+            if adicionar_produto(@item_orcamento.produto_id, @quantidade_anterior) && remover_produto(@item_orcamento.produto_id, @quantidade_atual.to_i)
+                if @item_orcamento.update(item_orcamento_params)
+                    @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
+                    redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
+                    puts @item_orcamento
+                else
+                    puts "Deu ruim"
+                end
             else
-                puts "Deu ruim"
-            end
+                puts "OPS"
+            end 
         else
-            puts "OPS"
-        end 
+            puts "Quantidade inválida"
+        end
     end
 
     def destroy
@@ -92,6 +101,15 @@ class ItemOrcamentosController < ApplicationController
     def remover_produto(produto_id, quantidade)
         @produto = Produto.find(produto_id)
         if @produto.update(quantidade: @produto.quantidade - quantidade)
+            return true
+        end
+        false
+    end
+
+    private 
+    def atualizar_produto(produto_id, quantidade)
+        @produto = Produto.find(produto_id)
+        if @produto.quantidade >= quantidade.to_i
             return true
         end
         false

@@ -99,9 +99,9 @@ class PedidoOrcamentosController < ApplicationController
     private 
     def excluir_item_orcamento(pedido_orcamento)
         @item_orcamentos = ItemOrcamento.where(pedido_orcamento_id: pedido_orcamento.id)
-        if @item_orcamentos != NIL
-            return false
+        if @item_orcamentos.empty?
+            return true
         end
-        return true
+        return false
     end
 end

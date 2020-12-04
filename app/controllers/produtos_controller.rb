@@ -30,12 +30,36 @@ class ProdutosController < ApplicationController
 
     def destroy
         @produto = Produto.find(params[:id])
-        @produto.destroy
-        redirect_to produtos_path
+        if excluir_produto(@produto)
+            @produto.destroy
+            redirect_to produtos_path
+        else
+            puts "Não pode"
+        end
     end
 
     private
     def produto_params
         params.require(:produto).permit(:descricao, :quantidade, :preco)
+    end
+
+    private 
+    def excluir_produto(produto)
+        @contagem = 0
+        @item_pedidos = ItemPedido.where(produto_id: produto.id)
+        if @item_pedidos.empty?
+            @contagem += 1
+        end
+
+        @item_orcamentos = ItemOrcamento.where(produto_id: produto.id)
+        if @item_orcamentos.empty?
+            @contagem += 1
+        end
+
+        if @contagem == 2
+            return true
+        else
+            return false
+        end
     end
 end

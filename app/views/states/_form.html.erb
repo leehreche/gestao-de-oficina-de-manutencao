@@ -5,9 +5,6 @@
             <%= form.label :"Descrição" %>
             <br>
             <%= form.text_field :descricao_status, class: "form-control", placeholder: "Ex.: Pendente" %>
-            <%= @state.errors.full_messages_for(:descrcicao_status).each do |message| %>
-                <div><%= message %></div>
-              <% end %>
         </p>
     </div>
 
@@ -16,11 +13,14 @@
             <%= form.label :"Tipo de Status" %>
             <br>
             <%= form.select :tipo_status, [['Autorização','Autorização'], ['Andamento','Andamento']] , class: "selectpicker", placeholder: "Ex.: Escolha um tipo de status", width: "auto" %>
-            <%= @state.errors.full_messages_for(:tipo_status).each do |message| %>
-                <div><%= message %></div>
-              <% end %>
         </p>
     </div>
+
+    <% if flash[:notice] %>
+        <div class="alert alert-danger" role="alert">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
     
     <p class="text-center">
         <%= form.submit "Enviar Dados", class: "btn btn-dark" %>
