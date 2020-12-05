@@ -21,23 +21,25 @@ class ItemOrcamentosController < ApplicationController
         @item_orcamento = ItemOrcamento.new(item_orcamento_params)
         @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
 
-        if atualizar_produto(@item_orcamento.produto_id, @item_orcamento.quantidade)
-            if remover_produto(@item_orcamento.produto_id, @item_orcamento.quantidade)
-                if @item_orcamento.save 
+        if atualizar_produto(@item_orcamento.produto_id, @item_orcamento.quantidade.to_i)
+            if remover_produto(@item_orcamento.produto_id, @item_orcamento.quantidade.to_i)
+                if @item_orcamento.valid?
+                    @item_orcamento.save
                     @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
                     redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
-                    puts @item_orcamento
                 else
-                    puts "Deu ruim"
+                    @produtos = Produto.all
+                    @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
+                    flash.now[:notice] = "É necessário preencher todos os campos."
+                    render :new
                 end
             else
                 puts "OPS"
             end
         else
-            puts "Quantidade inválida"
+            flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
+            redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
         end
-        
-        
     end
 
     def edit
@@ -64,7 +66,8 @@ class ItemOrcamentosController < ApplicationController
                 puts "OPS"
             end 
         else
-            puts "Quantidade inválida"
+            flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
+            redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
         end
     end
 

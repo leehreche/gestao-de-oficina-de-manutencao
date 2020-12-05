@@ -28,8 +28,18 @@ class ServicosController < ApplicationController
 
     def create
         @servico = Servico.new(servico_params)
-        @servico.save
-        redirect_to @servico
+        if @servico.valid?
+            @servico.save
+            redirect_to @servico
+        else
+            @funcionarios = Funcionario.all
+            @state_autorizado = State.where(descricao_status: 'Autorizado pelo Cliente')
+            @pedido_orcamentos = PedidoOrcamento.where(status_autorizacao: @state_autorizado)
+            @tipo_aparelhos = TipoAparelho.all
+            @states = State.where(tipo_status: 'Andamento')
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit

@@ -19,8 +19,15 @@ class PedidoSuppliersController < ApplicationController
 
     def create
         @pedido_supplier = PedidoSupplier.new(pedido_params)
-        @pedido_supplier.save
-        redirect_to @pedido_supplier
+        if @pedido_supplier.valid?
+            @pedido_supplier.save
+            redirect_to @pedido_supplier
+        else
+            @suppliers = Supplier.all
+            @funcionarios = Funcionario.all
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -41,9 +48,9 @@ class PedidoSuppliersController < ApplicationController
             @pedido_supplier.destroy
             redirect_to pedido_suppliers_path
         else
-            puts "Não pode"
-        end
-        
+            flash[:notice] = "Não é possível excluir o pedido nº #{@pedido_supplier.id}. Há dependências."
+            redirect_to pedido_suppliers_path
+        end        
     end
 
     private

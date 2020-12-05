@@ -13,8 +13,13 @@ class TipoAparelhosController < ApplicationController
 
     def create
         @tipo_aparelho = TipoAparelho.new(tipo_aparelho_params)
-        @tipo_aparelho.save
-        redirect_to @tipo_aparelho
+        if @tipo_aparelho.valid?
+            @tipo_aparelho.save
+            redirect_to @tipo_aparelho
+        else
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -33,7 +38,8 @@ class TipoAparelhosController < ApplicationController
             @tipo_aparelho.destroy
             redirect_to tipo_aparelhos_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o tipo de aparelho #{@tipo_aparelho.nome}. Há dependências."
+            redirect_to tipo_aparelhos_path
         end
     end
 

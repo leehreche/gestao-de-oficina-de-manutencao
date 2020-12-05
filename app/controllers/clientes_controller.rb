@@ -13,8 +13,14 @@ class ClientesController < ApplicationController
 
     def create
         @cliente = Cliente.new(cliente_params)
-        @cliente.save
-        redirect_to @cliente
+
+        if @cliente.valid?
+            @cliente.save
+            redirect_to @cliente
+        else
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -34,7 +40,8 @@ class ClientesController < ApplicationController
             @cliente.destroy
             redirect_to clientes_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o cliente #{@cliente.nome}. Há dependências."
+            redirect_to clientes_path
         end
     end
 

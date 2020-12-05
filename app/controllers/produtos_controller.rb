@@ -13,9 +13,13 @@ class ProdutosController < ApplicationController
 
     def create
         @produto = Produto.new(produto_params)
-        @produto.save
-        flash.now[:notice] = "Produto Cadastrado com sucesso!"
-        redirect_to @produto
+        if @produto.valid?
+            @produto.save
+            redirect_to @produto
+        else
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -34,7 +38,8 @@ class ProdutosController < ApplicationController
             @produto.destroy
             redirect_to produtos_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o produto #{@produto.descricao}. Há dependências."
+            redirect_to produtos_path
         end
     end
 

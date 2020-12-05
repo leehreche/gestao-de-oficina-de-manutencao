@@ -22,13 +22,16 @@ class ItemPedidosController < ApplicationController
         @item_pedido = ItemPedido.new(item_pedido_params)
         @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
 
-        if adicionar_produto(@item_pedido.produto_id, @item_pedido.quantidade)
-            if @item_pedido.save 
+        if adicionar_produto(@item_pedido.produto_id, @item_pedido.quantidade.to_i)
+            if @item_pedido.valid?
+                @item_pedido.save
                 @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
                 redirect_to pedido_supplier_item_pedido_path(@pedido_supplier, @item_pedido)
-                puts @item_pedido
             else
-                puts "Deu ruim"
+                @produtos = Produto.all
+                @pedido_supplier = PedidoSupplier.find(@item_pedido.pedido_supplier_id)
+                flash.now[:notice] = "É necessário preencher todos os campos."
+                render :new
             end
         else
             puts "OPS"

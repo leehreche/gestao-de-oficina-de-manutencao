@@ -20,7 +20,14 @@
             <br>
             <%= form.text_field :quantidade, class: "form-control", placeholder: "Ex.: 12" %>
         </p>
-    </div>   
+    </div>  
+    
+    <% if flash[:notice] %>
+        <div class="alert alert-danger" role="alert">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <br/>
     
     <p class="text-center">
         <%= form.submit "Enviar Dados", class: "btn btn-dark" %>

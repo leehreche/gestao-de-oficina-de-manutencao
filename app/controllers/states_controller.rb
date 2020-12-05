@@ -18,7 +18,7 @@ class StatesController < ApplicationController
             @state.save
             redirect_to @state
         else
-            flash[:notice] = "É necessário preencher todos os campos."
+            flash.now[:notice] = "É necessário preencher todos os campos."
             render :new
         end
     end
@@ -39,7 +39,8 @@ class StatesController < ApplicationController
             @state.destroy
             redirect_to states_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o estado #{@state.descricao_status}. Há dependências."
+            redirect_to states_path
         end
     end
 

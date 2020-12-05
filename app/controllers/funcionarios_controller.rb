@@ -13,8 +13,14 @@ class FuncionariosController < ApplicationController
 
     def create
         @funcionario = Funcionario.new(funcionario_params)
-        @funcionario.save
-        redirect_to @funcionario
+
+        if @funcionario.valid?
+            @funcionario.save
+            redirect_to @funcionario
+        else
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -33,7 +39,8 @@ class FuncionariosController < ApplicationController
             @funcionario.destroy
             redirect_to funcionarios_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o funcionário #{@funcionario.nome}. Há dependências."
+            redirect_to funcionarios_path
         end
     end
 

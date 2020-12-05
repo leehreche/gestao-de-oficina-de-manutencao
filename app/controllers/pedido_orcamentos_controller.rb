@@ -28,8 +28,17 @@ class PedidoOrcamentosController < ApplicationController
 
     def create
         @pedido_orcamento = PedidoOrcamento.new(pedido_params)
-        @pedido_orcamento.save
-        redirect_to @pedido_orcamento
+        if @pedido_orcamento.valid?
+            @pedido_orcamento.save
+            redirect_to @pedido_orcamento
+        else
+            @clientes = Cliente.all
+            @tipo_aparelhos = TipoAparelho.all
+            @status_autorizacoes = State.where(tipo_status: 'Autorização')
+            @funcionarios = Funcionario.all
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -60,7 +69,8 @@ class PedidoOrcamentosController < ApplicationController
             @pedido_orcamento.destroy
             redirect_to pedido_orcamentos_path
         else
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o pedido nº #{@pedido_orcamento.id}. Há dependências."
+            redirect_to pedido_orcamentos_path
         end
     end
 

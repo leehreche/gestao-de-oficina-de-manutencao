@@ -13,8 +13,13 @@ class SuppliersController < ApplicationController
 
     def create
         @supplier = Supplier.new(supplier_params)
-        @supplier.save
-        redirect_to @supplier
+        if @supplier.valid?
+            @supplier.save
+            redirect_to @supplier
+        else
+            flash.now[:notice] = "É necessário preencher todos os campos."
+            render :new
+        end
     end
 
     def edit
@@ -33,7 +38,8 @@ class SuppliersController < ApplicationController
             @supplier.destroy
             redirect_to suppliers_path
         else 
-            puts "Não pode"
+            flash[:notice] = "Não é possível excluir o fornecedor #{@supplier.nome_fantasia}. Há dependências."
+            redirect_to suppliers_path
         end
     end
 

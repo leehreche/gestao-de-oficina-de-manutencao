@@ -1,2 +1,3 @@
 class PedidoFornecedor < ApplicationRecord
+    
 end
