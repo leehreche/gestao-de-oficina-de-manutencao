@@ -38,7 +38,7 @@ class ItemOrcamentosController < ApplicationController
             end
         else
             flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
-            redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
+            render :new
         end
     end
 
@@ -67,7 +67,7 @@ class ItemOrcamentosController < ApplicationController
             end 
         else
             flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
-            redirect_to pedido_orcamento_item_orcamento_path(@pedido_orcamento, @item_orcamento)
+            render :edit
         end
     end
 
