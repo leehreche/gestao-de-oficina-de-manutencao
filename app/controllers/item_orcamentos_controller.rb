@@ -37,6 +37,8 @@ class ItemOrcamentosController < ApplicationController
                 puts "OPS"
             end
         else
+            @produtos = Produto.all
+            @pedido_orcamento = PedidoOrcamento.find(@item_orcamento.pedido_orcamento_id)
             flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
             render :new
         end
@@ -66,6 +68,8 @@ class ItemOrcamentosController < ApplicationController
                 puts "OPS"
             end 
         else
+            @pedido_orcamento = PedidoOrcamento.find(params[:pedido_orcamento_id])
+            @produtos = Produto.all
             flash[:notice] = "Não é possível alterar quantidade do produto. O valor em estoque é inferior ao desejado."
             render :edit
         end
