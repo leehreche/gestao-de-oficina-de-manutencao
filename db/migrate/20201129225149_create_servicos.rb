@@ -7,6 +7,7 @@ class CreateServicos < ActiveRecord::Migration[6.0]
       t.string :descricao_servico
       t.integer :state_id
       t.date :data
+      t.integer :funcionario_responsavel_id
 
       t.timestamps
     end
