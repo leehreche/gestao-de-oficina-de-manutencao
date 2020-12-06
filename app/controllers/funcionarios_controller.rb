@@ -18,7 +18,7 @@ class FuncionariosController < ApplicationController
             @funcionario.save
             redirect_to @funcionario
         else
-            flash.now[:notice] = "É necessário preencher todos os campos."
+            flash.now[:notice] = "É necessário preencher todos os campos. O CPF deve conter 11 dígitos (somente números)."
             render :new
         end
     end

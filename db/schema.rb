@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_195059) do
+ActiveRecord::Schema.define(version: 2020_12_06_020134) do
 
   create_table "clientes", force: :cascade do |t|
-    t.integer "cpf"
+    t.string "cpf"
     t.string "nome"
     t.string "endereco"
     t.string "cidade"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_195059) do
   end
 
   create_table "funcionarios", force: :cascade do |t|
-    t.integer "cpf"
+    t.string "cpf"
     t.string "nome"
     t.string "cargo"
     t.datetime "created_at", precision: 6, null: false
@@ -99,13 +99,15 @@ ActiveRecord::Schema.define(version: 2020_12_03_195059) do
   end
 
   create_table "servicos", force: :cascade do |t|
-    t.integer "id_funcionario"
-    t.integer "id_pedido"
-    t.integer "id_aparelho"
+    t.integer "funcionario_cadastro_id"
+    t.integer "pedido_orcamento_id"
+    t.integer "tipo_aparelho_id"
     t.string "descricao_servico"
-    t.integer "status_andamento"
+    t.integer "state_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "data"
+    t.integer "funcionario_responsavel_id"
   end
 
   create_table "states", force: :cascade do |t|

@@ -18,7 +18,7 @@ class ClientesController < ApplicationController
             @cliente.save
             redirect_to @cliente
         else
-            flash.now[:notice] = "É necessário preencher todos os campos."
+            flash.now[:notice] = "É necessário preencher todos os campos. O CPF deve conter 11 dígitos (somente números)."
             render :new
         end
     end
