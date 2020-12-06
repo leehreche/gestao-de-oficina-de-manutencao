@@ -5,6 +5,8 @@ class CreatePedidoOrcamentos < ActiveRecord::Migration[6.0]
       t.integer :id_aparelho
       t.float :valor_mao_de_obra
       t.integer :status_autorizacao
+      t.date :data
+      t.integer :id_funcionario
 
       t.timestamps
     end
