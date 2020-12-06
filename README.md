@@ -28,6 +28,7 @@ Links de acessso aos artefatos do projeto:
 
 [Código Fonte da Aplicação](https://github.com/leehreche/gestao-de-oficina-de-manutencao/tree/master)
 
+[Aplicação no Heroku](https://secret-castle-82783.herokuapp.com)
 
 ## Sobre do projeto:
 O projeto foi desenvolvido para a disciplina de Laboratório de Projeto de Softwares, composta pelos alunos: Igor de Oliveira, João Victor Voltarelli e Letícia de Almeida Reche, do 8º período do curso de Ciência da Computação da PUC Minas de Poços de Caldas.
